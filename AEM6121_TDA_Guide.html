@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEM 6121 — Guía TDA-Optimizada</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0f0f1a;
+    color: #e2e8f0;
+    line-height: 1.65;
+    padding: 0;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, #f6e05e, #48bb78, #4299e1, #9f7aea);
+    z-index: 200;
+    transition: width 0.3s;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 4px;
+    z-index: 100;
+    background: rgba(15,15,26,0.95);
+    backdrop-filter: blur(10px);
+    padding: 8px 16px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  nav a:hover { transform: translateY(-1px); filter: brightness(1.2); }
+  nav a.c1 { background: #805ad5; }
+  nav a.c2 { background: #38a169; }
+  nav a.c3 { background: #3182ce; }
+  nav a.c4 { background: #e53e3e; }
+  nav a.c5 { background: #d69e2e; }
+
+  .container { max-width: 820px; margin: 0 auto; padding: 20px 20px 60px; }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 32px 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f6e05e, #48bb78, #63b3ed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .hero p { color: #718096; font-size: 14px; }
+  .hero .badges {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .hero .badge {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: #a0aec0;
+    font-weight: 600;
+  }
+
+  /* ── LEVEL HEADERS ── */
+  .level {
+    margin: 32px 0 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .level::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.15;
+    z-index: 0;
+  }
+  .level h2 {
+    position: relative;
+    z-index: 1;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+  .level .tag {
+    position: relative;
+    z-index: 1;
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .level-purple { background: rgba(128,90,213,0.15); border: 1px solid rgba(128,90,213,0.3); }
+  .level-purple h2 { color: #d6bcfa; }
+  .level-green { background: rgba(56,161,105,0.15); border: 1px solid rgba(56,161,105,0.3); }
+  .level-green h2 { color: #9ae6b4; }
+  .level-blue { background: rgba(49,130,206,0.15); border: 1px solid rgba(49,130,206,0.3); }
+  .level-blue h2 { color: #90cdf4; }
+  .level-red { background: rgba(229,62,62,0.15); border: 1px solid rgba(229,62,62,0.3); }
+  .level-red h2 { color: #feb2b2; }
+  .level-yellow { background: rgba(214,158,46,0.15); border: 1px solid rgba(214,158,46,0.3); }
+  .level-yellow h2 { color: #fefcbf; }
+
+  /* ── CARDS ── */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 12px 0;
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #f7fafc;
+  }
+  p { font-size: 14px; margin: 6px 0; color: #cbd5e0; }
+  p b { color: #f7fafc; }
+  .small { font-size: 12.5px; color: #a0aec0; }
+
+  /* ── SPECIAL BOXES ── */
+  .think {
+    background: rgba(99,179,237,0.1);
+    border: 1px solid rgba(99,179,237,0.25);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #90cdf4;
+  }
+  .think::before {
+    content: "PIÉNSALO ASÍ →";
+    display: block;
+    font-weight: 900;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #63b3ed;
+    margin-bottom: 4px;
+  }
+
+  .math {
+    background: rgba(128,90,213,0.12);
+    border: 1px solid rgba(128,90,213,0.25);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #d6bcfa;
+    line-height: 2;
+  }
+  .math .grey { color: #718096; font-size: 11.5px; }
+
+  .do-this {
+    background: rgba(56,161,105,0.12);
+    border: 2px solid rgba(56,161,105,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 10px 0;
+    font-size: 13.5px;
+    color: #9ae6b4;
+  }
+  .do-this::before {
+    content: "EJEMPLO RESUELTO";
+    display: block;
+    font-weight: 900;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #48bb78;
+    margin-bottom: 6px;
+  }
+  .do-this b { color: #f7fafc; }
+  .do-this .result {
+    background: rgba(56,161,105,0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    color: #c6f6d5;
+    font-weight: 600;
+  }
+
+  .trap {
+    background: rgba(229,62,62,0.1);
+    border: 2px solid rgba(229,62,62,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 13.5px;
+    color: #feb2b2;
+  }
+  .trap::before {
+    content: "TRAMPA DEL EXAMEN";
+    display: block;
+    font-weight: 900;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #fc8181;
+    margin-bottom: 4px;
+  }
+
+  .exam-q {
+    background: rgba(214,158,46,0.12);
+    border: 2px solid rgba(214,158,46,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 10px 0;
+    font-size: 13.5px;
+    color: #fefcbf;
+  }
+  .exam-q::before {
+    content: "EN EL EXAMEN, HAZ ESTO";
+    display: block;
+    font-weight: 900;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #ecc94b;
+    margin-bottom: 6px;
+  }
+
+  .checkpoint {
+    background: linear-gradient(135deg, rgba(128,90,213,0.2), rgba(49,130,206,0.2));
+    border: 2px solid rgba(128,90,213,0.3);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .checkpoint h3 {
+    color: #d6bcfa;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .checkpoint p { color: #a0aec0; font-size: 13px; }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  th {
+    background: rgba(255,255,255,0.06);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 7px 10px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: #cbd5e0;
+  }
+  td b { color: #f7fafc; }
+
+  /* ── QUIZ ── */
+  .quiz-block {
+    background: rgba(255,255,255,0.03);
+    border: 2px solid rgba(128,90,213,0.3);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 12px 0;
+  }
+  .quiz-block .qnum {
+    display: inline-block;
+    background: #805ad5;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .quiz-block .question {
+    font-weight: 700;
+    font-size: 14px;
+    color: #f7fafc;
+    margin-bottom: 8px;
+  }
+  details {
+    margin: 6px 0;
+    background: rgba(128,90,213,0.08);
+    border-radius: 8px;
+    padding: 0 12px;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #d6bcfa;
+    padding: 8px 0;
+    font-size: 13px;
+  }
+  details summary:hover { color: #e9d8fd; }
+  details > div { padding: 4px 0 10px; }
+  details p { color: #cbd5e0; font-size: 13px; }
+
+  /* STEP MARKERS */
+  .step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #805ad5;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin: 24px 0;
+  }
+
+  .final {
+    background: linear-gradient(135deg, #553c9a, #2b6cb0);
+    border-radius: 14px;
+    padding: 24px 20px;
+    margin: 28px 0;
+    text-align: center;
+  }
+  .final h3 { font-size: 18px; color: #fff; margin-bottom: 8px; }
+  .final p { color: #e9d8fd; font-size: 13px; }
+
+  /* Responsive */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a href="#L0" class="c1">Start</a>
+  <a href="#L1" class="c2">Rubin</a>
+  <a href="#L1b" class="c2">SDO</a>
+  <a href="#L2" class="c3">RCT</a>
+  <a href="#L2b" class="c3">LATE</a>
+  <a href="#L3" class="c4">DiD</a>
+  <a href="#L3b" class="c4">Regresión</a>
+  <a href="#L4" class="c5">Practice</a>
+  <a href="#cheat" class="c1">Cheat</a>
+</nav>
+
+<div class="container">
+
+<div class="hero">
+  <h1>CRASH COURSE PARA TDA</h1>
+  <p>Bloques cortos. Sin relleno. Con números. Listo para el examen.</p>
+  <div class="badges">
+    <span class="badge">~35 min lectura</span>
+    <span class="badge">3 temas</span>
+    <span class="badge">11 ejemplos resueltos</span>
+    <span class="badge">15 preguntas práctica</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="level level-purple" id="L0">
+  <div class="tag">NIVEL 0 · BASE</div>
+  <h2>La Única Pregunta del Curso</h2>
+</div>
+
+<div class="card">
+  <h3>¿X causa Y?</h3>
+  <p>Todo el curso se reduce a esto. Quieres saber si algo (X) <b>causa</b> un resultado (Y).</p>
+  <p>Ejemplo: ¿ir a clases particulares <b>causa</b> mejores notas?</p>
+</div>
+
+<div class="card">
+  <h3>Los Dos Mundos (Potential Outcomes)</h3>
+  <p>Para cada persona existen <b>dos realidades</b>:</p>
+  <p><b>Y(1)</b> = lo que le pasa SI recibe tratamiento</p>
+  <p><b>Y(0)</b> = lo que le pasa si NO recibe tratamiento</p>
+  <p>El efecto causal = Y(1) − Y(0) para esa persona.</p>
+</div>
+
+<div class="think">
+  María va a clases y saca 85. ¿Las clases causaron el 85? No sabes, porque no puedes ver qué habría sacado SIN clases. Quizás habría sacado 70 (efecto = 15) o 84 (efecto = 1). <b>Nunca lo sabrás.</b> Eso es el problema fundamental.
+</div>
+
+<div class="trap">
+  <b>D=1 NO significa Y(0)=0.</b> Si alguien recibió tratamiento (D=1), solo VES su Y(1). Su Y(0) sigue existiendo, simplemente no lo observas. No es cero.
+</div>
+
+<div class="card">
+  <h3>La Switching Equation</h3>
+  <div class="math">
+    Yᵢ = Dᵢ · Yᵢ(1) + (1 − Dᵢ) · Yᵢ(0)
+  </div>
+  <p>Si D=1 → ves Y(1). Si D=0 → ves Y(0). Nunca los dos.</p>
+</div>
+
+<div class="checkpoint">
+  <h3>CHECKPOINT: ¿Entendiste esto?</h3>
+  <p>Cada persona tiene dos resultados posibles. Solo ves uno. Ese es TODO el problema.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="level level-green" id="L1">
+  <div class="tag">NIVEL 1 · RUBIN CAUSAL MODEL</div>
+  <h2>Los Parámetros que Quieres Medir</h2>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <h3>ATE</h3>
+    <p><b>Average Treatment Effect</b></p>
+    <p>Efecto promedio para <b>TODOS</b>.</p>
+    <div class="math">ATE = E[Y(1) − Y(0)]</div>
+  </div>
+  <div class="card">
+    <h3>ATT</h3>
+    <p><b>Avg Treatment on the Treated</b></p>
+    <p>Efecto promedio para los que <b>SÍ se trataron</b>.</p>
+    <div class="math">ATT = E[Y(1)−Y(0) | D=1]</div>
+  </div>
+</div>
+<div class="two-col">
+  <div class="card">
+    <h3>ATU</h3>
+    <p><b>Avg Treatment on the Untreated</b></p>
+    <p>Efecto para los que <b>NO</b> se trataron.</p>
+    <div class="math">ATU = E[Y(1)−Y(0) | D=0]</div>
+  </div>
+  <div class="card">
+    <h3>Relación entre ellos</h3>
+    <div class="math">ATE = p · ATT + (1−p) · ATU</div>
+    <p>p = proporción de tratados.</p>
+  </div>
+</div>
+
+<div class="do-this">
+  <b>100 personas. 40 tratadas (p=0.4). ATT=15, ATU=5.</b><br>
+  ATE = 0.4 × 15 + 0.6 × 5 = 6 + 3
+  <div class="result">ATE = 9</div>
+</div>
+
+<hr class="divider">
+
+<!-- SDO -->
+<div class="level level-green" id="L1b">
+  <div class="tag">NIVEL 1B · CLAVE</div>
+  <h2>SDO y Su Descomposición</h2>
+</div>
+
+<div class="card">
+  <h3>SDO = Simple Difference in Outcomes</h3>
+  <div class="math">SDO = E[Y | D=1] − E[Y | D=0]</div>
+  <p>= Promedio tratados − Promedio controles. Fácil de calcular. <b>Casi siempre sesgado.</b></p>
+</div>
+
+<div class="think">
+  Los que van a clases particulares sacan mejor nota. ¿Es por las clases, o porque ya eran mejores estudiantes? Si los grupos son diferentes desde el inicio, la comparación simple está contaminada. Eso es el <b>selection bias</b>.
+</div>
+
+<div class="card">
+  <h3>⭐ Descomposición del SDO (MEMORIZA ESTO)</h3>
+
+  <p><b>Versión 1 (dos partes):</b></p>
+  <div class="math">
+    SDO = ATT + Selection Bias<br>
+    <span class="grey">SB = E[Y(0)|D=1] − E[Y(0)|D=0]</span>
+  </div>
+  <p class="small">SB = "qué tan diferentes eran los grupos SIN tratamiento"</p>
+
+  <p><b>Versión 2 (tres partes):</b></p>
+  <div class="math">
+    SDO = ATE + SB + (1−p)(ATT − ATU)<br>
+    <span class="grey">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑ HTE bias</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>¿Qué significa cada parte?</h3>
+  <table>
+    <tr><th>Parte</th><th>Significado</th><th>¿Cuándo = 0?</th></tr>
+    <tr><td><b>Selection Bias</b></td><td>Grupos diferentes de base</td><td>Randomización</td></tr>
+    <tr><td><b>HTE bias</b></td><td>El tto. afecta distinto a cada grupo</td><td>ATT = ATU (efecto homogéneo)</td></tr>
+  </table>
+</div>
+
+<div class="do-this">
+  <b>Datos:</b> E[Y|D=1] = 82, E[Y|D=0] = 70, E[Y(0)|D=1] = 74, E[Y(0)|D=0] = 70<br><br>
+  <span class="step">1</span> SDO = 82 − 70 = <b>12</b><br>
+  <span class="step">2</span> ATT = E[Y(1)|D=1] − E[Y(0)|D=1] = 82 − 74 = <b>8</b><br>
+  <span class="step">3</span> SB = 74 − 70 = <b>4</b>
+  <div class="result">Verificación: SDO = 8 + 4 = 12 ✓ → El SDO sobreestima por 4 (el sesgo)</div>
+</div>
+
+<div class="card">
+  <h3>Independence y SUTVA</h3>
+  <p><b>Independence:</b> (Y(1),Y(0)) ⊥⊥ D → los potential outcomes no dependen de quién se trata. Se logra con <b>randomización</b>. Resultado: SB = 0, HTE = 0, <b>SDO = ATE</b>.</p>
+  <p><b>SUTVA:</b> (1) Mi tratamiento no afecta tu resultado. (2) Todos reciben la misma versión del tratamiento.</p>
+</div>
+
+<div class="trap">
+  <b>Independence NO significa SDO = 0.</b> Significa SDO = ATE. El efecto puede ser enorme. Solo no tiene sesgo.
+</div>
+
+<div class="checkpoint">
+  <h3>CHECKPOINT: ¿Puedes hacer esto?</h3>
+  <p>Te dan promedios de tratados y controles → calcula SDO → descompón en ATT + SB → verifica</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="level level-blue" id="L2">
+  <div class="tag">NIVEL 2 · RCT CON NON-COMPLIANCE</div>
+  <h2>Cuando la Gente No Obedece</h2>
+</div>
+
+<div class="card">
+  <h3>Dos Variables Diferentes</h3>
+  <table>
+    <tr><th>Variable</th><th>Qué es</th><th>Tipo</th></tr>
+    <tr><td><b>Z</b></td><td>Lo que el investigador ASIGNÓ (sorteo)</td><td>Exógeno (limpio)</td></tr>
+    <tr><td><b>D</b></td><td>Lo que la persona REALMENTE HIZO</td><td>Endógeno (contaminado)</td></tr>
+  </table>
+</div>
+
+<div class="think">
+  Sorteas quién va a clases de apoyo. Pero algunos asignados no van, y algunos no asignados se meten igual. Ahora Z (lo que asignaste) ≠ D (lo que hicieron).
+</div>
+
+<div class="card">
+  <h3>4 Tipos de Personas</h3>
+  <table>
+    <tr><th>Tipo</th><th>Le toca Z=1</th><th>Le toca Z=0</th><th>En español</th></tr>
+    <tr><td><b>Complier ✅</b></td><td>D=1</td><td>D=0</td><td>Obedece siempre</td></tr>
+    <tr><td><b>Always-taker</b></td><td>D=1</td><td>D=1</td><td>Se trata siempre</td></tr>
+    <tr><td><b>Never-taker</b></td><td>D=0</td><td>D=0</td><td>Nunca se trata</td></tr>
+    <tr><td><b>Defier</b></td><td>D=0</td><td>D=1</td><td>Hace lo opuesto (asumimos = 0)</td></tr>
+  </table>
+</div>
+
+<div class="exam-q">
+  <b>¿Te piden calcular proporciones de cada tipo?</b><br><br>
+  <span class="step">1</span> <b>Compliers</b> = P(D=1|Z=1) − P(D=1|Z=0)<br>
+  <span class="step">2</span> <b>Always-takers</b> = P(D=1|Z=0)<br>
+  <span class="step">3</span> <b>Never-takers</b> = 1 − P(D=1|Z=1)<br>
+  <span class="step">4</span> <b>Defiers</b> = 0<br>
+  <span class="step">✓</span> <b>Verificar:</b> deben sumar 100%
+</div>
+
+<div class="do-this">
+  <b>De 200 con Z=1: 150 participaron. De 200 con Z=0: 30 participaron.</b><br><br>
+  P(D=1|Z=1) = 150/200 = <b>0.75</b><br>
+  P(D=1|Z=0) = 30/200 = <b>0.15</b>
+  <div class="result">
+    Compliers = 0.75 − 0.15 = <b>60%</b><br>
+    Always-takers = 0.15 = <b>15%</b><br>
+    Never-takers = 1 − 0.75 = <b>25%</b><br>
+    Total: 60+15+25 = 100% ✓
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="level level-blue" id="L2b">
+  <div class="tag">NIVEL 2B · LOS TRES ESTIMADORES</div>
+  <h2>ITT → First Stage → LATE</h2>
+</div>
+
+<div class="card">
+  <h3>⭐ ITT (Intent to Treat)</h3>
+  <div class="math">ITT = E[Y | Z=1] − E[Y | Z=0]</div>
+  <p>Efecto de ser <b>ASIGNADO</b>. Usa Z, no D. Está "diluido" porque incluye gente que no cumplió.</p>
+</div>
+
+<div class="card">
+  <h3>⭐ First Stage</h3>
+  <div class="math">FS = P(D=1|Z=1) − P(D=1|Z=0)</div>
+  <p>= % de compliers. ¿Cuánto cambia la participación REAL por la asignación?</p>
+</div>
+
+<div class="card">
+  <h3>⭐ LATE (Local Avg Treatment Effect)</h3>
+  <div class="math">LATE = ITT / First Stage</div>
+  <p>Efecto del tratamiento <b>para COMPLIERS solamente</b>.</p>
+</div>
+
+<div class="think">
+  ITT está diluido (incluye gente que no hizo caso). Al dividir por el % que sí hizo caso, "concentras" el efecto. Por eso <b>|LATE| ≥ |ITT| siempre</b>.
+</div>
+
+<div class="do-this">
+  <b>Ȳ(Z=1) = 78, Ȳ(Z=0) = 72, First Stage = 0.60</b><br><br>
+  <span class="step">1</span> ITT = 78 − 72 = <b>6</b><br>
+  <span class="step">2</span> LATE = 6 / 0.60 = <b>10</b>
+  <div class="result">
+    Ser asignado mejora nota 6 pts (ITT).<br>
+    Realmente participar mejora nota 10 pts para compliers (LATE).<br>
+    |10| ≥ |6| ✓
+  </div>
+</div>
+
+<div class="card">
+  <h3>4 Supuestos del LATE</h3>
+  <table>
+    <tr><th>#</th><th>Nombre</th><th>En simple</th></tr>
+    <tr><td>1</td><td><b>Independence</b></td><td>Z es aleatorio</td></tr>
+    <tr><td>2</td><td><b>Exclusion</b></td><td>Z→Y SOLO a través de D</td></tr>
+    <tr><td>3</td><td><b>First Stage</b></td><td>Z sí cambia D</td></tr>
+    <tr><td>4</td><td><b>Monotonicity</b></td><td>No hay defiers</td></tr>
+  </table>
+</div>
+
+<div class="trap">
+  Si tu LATE sale MENOR que tu ITT (en valor absoluto), <b>te equivocaste</b>. Revisa los números.
+</div>
+
+<div class="card">
+  <h3>Extras: Fisher Sharp Null y Bad Controls</h3>
+  <p><b>Fisher sharp null:</b> H₀: τᵢ = 0 para TODOS (no solo en promedio). Más fuerte que "ATE=0".</p>
+  <p><b>Bad controls:</b> Variable medida DESPUÉS del tratamiento. No controles por ella. Solo usa variables de ANTES.</p>
+</div>
+
+<div class="checkpoint">
+  <h3>CHECKPOINT: ¿Puedes hacer esto?</h3>
+  <p>Te dan datos de un RCT → calcular ITT, FS, LATE, % de cada tipo → verificar |LATE| ≥ |ITT|</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="level level-red" id="L3">
+  <div class="tag">NIVEL 3 · DIFF-IN-DIFF</div>
+  <h2>DiD: Cuando No Puedes Randomizar</h2>
+</div>
+
+<div class="think">
+  No puedes hacer un experimento. Pero tienes datos de antes y después para un grupo tratado y uno control. Ejemplo: un estado sube el salario mínimo, otro no. Tienes datos de empleo antes y después.
+</div>
+
+<div class="card">
+  <h3>La Tabla 2×2 (MEMORIZA ESTO)</h3>
+  <table>
+    <tr><th></th><th>Antes (Pre)</th><th>Después (Post)</th><th>Cambio</th></tr>
+    <tr><td><b>Tratados</b></td><td><b>A</b></td><td><b>B</b></td><td>B − A</td></tr>
+    <tr><td><b>Control</b></td><td><b>C</b></td><td><b>D</b></td><td>D − C</td></tr>
+  </table>
+  <div class="math">DiD = (B − A) − (D − C)</div>
+</div>
+
+<div class="think">
+  <span class="step">1</span> ¿Cuánto cambió el tratado? → B − A<br>
+  <span class="step">2</span> ¿Cuánto cambió el control? → D − C<br>
+  <span class="step">3</span> Resta → el control te dice cuánto habría cambiado el tratado sin tratamiento. La diferencia = efecto causal.
+</div>
+
+<div class="do-this">
+  <table>
+    <tr><th></th><th>Antes</th><th>Después</th></tr>
+    <tr><td><b>Estado tratado</b></td><td>100</td><td>95</td></tr>
+    <tr><td><b>Estado control</b></td><td>110</td><td>108</td></tr>
+  </table>
+  <br>
+  <span class="step">1</span> Cambio tratado = 95 − 100 = <b>−5</b><br>
+  <span class="step">2</span> Cambio control = 108 − 110 = <b>−2</b><br>
+  <span class="step">3</span> DiD = (−5) − (−2) = <b>−3</b>
+  <div class="result">El salario mínimo redujo empleo en 3 mil. Los −5 incluían −2 de tendencia natural.</div>
+</div>
+
+<hr class="divider">
+
+<div class="level level-red" id="L3b">
+  <div class="tag">NIVEL 3B · LA REGRESIÓN</div>
+  <h2>DiD en Forma de Regresión</h2>
+</div>
+
+<div class="card">
+  <div class="math">Yᵢₜ = β₀ + β₁·Dᵢ + β₂·Postₜ + β₃·(Dᵢ × Postₜ) + εᵢₜ</div>
+  <table>
+    <tr><th>Coef.</th><th>= qué</th><th>= celda</th></tr>
+    <tr><td><b>β₀</b></td><td>Control, pre</td><td>= C</td></tr>
+    <tr><td><b>β₁</b></td><td>Dif. entre grupos al inicio</td><td>= A − C</td></tr>
+    <tr><td><b>β₂</b></td><td>Cambio temporal del control</td><td>= D − C</td></tr>
+    <tr><td style="color:#fc8181;"><b>β₃</b></td><td><b>EFECTO CAUSAL DiD</b></td><td>= (B−A)−(D−C)</td></tr>
+  </table>
+</div>
+
+<div class="exam-q">
+  <b>Si te dan β₀, β₁, β₂, β₃ y piden la tabla:</b><br><br>
+  C = β₀<br>
+  A = β₀ + β₁<br>
+  D = β₀ + β₂<br>
+  B = β₀ + β₁ + β₂ + β₃
+</div>
+
+<div class="do-this">
+  <b>β₀=110, β₁=−10, β₂=−2, β₃=−3</b><br><br>
+  C = 110 &nbsp;|&nbsp; A = 110+(−10) = 100<br>
+  D = 110+(−2) = 108 &nbsp;|&nbsp; B = 110+(−10)+(−2)+(−3) = 95
+  <div class="result">DiD = (95−100)−(108−110) = −5−(−2) = −3 = β₃ ✓</div>
+</div>
+
+<div class="card">
+  <h3>Parallel Trends (SUPUESTO CLAVE)</h3>
+  <p><b>Qué dice:</b> Sin tratamiento, el grupo tratado habría seguido la misma tendencia que el control.</p>
+  <p><b>No se puede probar.</b> Solo puedes mostrar evidencia sugestiva (pre-trends).</p>
+</div>
+
+<div class="trap">
+  <b>Parallel trends ≠ mismos niveles.</b> A puede ser diferente de C (eso es β₁). Lo que importa es que <b>cambien al mismo ritmo</b>.<br><br>
+  <b>Pre-trends ≈ 0 NO prueba parallel trends.</b> Solo es evidencia.
+</div>
+
+<div class="card">
+  <h3>Event Study</h3>
+  <div class="math">
+    Yᵢₜ = αᵢ + λₜ + Σ(k≠−1) δₖ·Dᵢ·𝟙(t=k) + εᵢₜ
+  </div>
+  <p><b>k &lt; 0:</b> Pre-tratamiento. δₖ debería ≈ 0 (si no → problema).</p>
+  <p><b>k ≥ 0:</b> Post-tratamiento. δₖ = efectos en cada periodo.</p>
+  <p><b>k = −1:</b> Se omite (periodo de referencia).</p>
+  <p><b>αᵢ</b> = fixed effects de unidad. <b>λₜ</b> = fixed effects de tiempo.</p>
+</div>
+
+<div class="card">
+  <h3>DiD identifica: ATT</h3>
+  <p>Efecto promedio sobre los tratados. Bajo el supuesto de parallel trends.</p>
+</div>
+
+<div class="exam-q">
+  <b>"¿Es creíble el DiD?"</b> → Discute:<br>
+  <span class="step">1</span> ¿Pre-trends paralelos?<br>
+  <span class="step">2</span> ¿Hubo shock diferencial (algo que solo afectó a un grupo)?<br>
+  <span class="step">3</span> ¿Ashenfelter dip (tratados bajan justo antes)?<br>
+  <span class="step">4</span> ¿Cambió la composición de los grupos?
+</div>
+
+<div class="checkpoint">
+  <h3>CHECKPOINT: ¿Puedes hacer esto?</h3>
+  <p>Te dan la tabla 2×2 → DiD. Te dan betas → reconstruir tabla. Te dan tabla → dar betas.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="level level-yellow" id="L4">
+  <div class="tag">PRÁCTICA FINAL</div>
+  <h2>15 Preguntas Tipo Examen</h2>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q1</span>
+  <p class="question">¿Qué es el problema fundamental de la inferencia causal?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p>No puedes observar Y(1) y Y(0) para la misma persona. Solo ves un potential outcome. No puedes calcular τᵢ = Y(1)−Y(0) directamente.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q2</span>
+  <p class="question">SDO = 25, ATT = 18. ¿Selection bias?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <div class="math">SDO = ATT + SB → 25 = 18 + SB → <b>SB = 7</b></div>
+    <p>Positivo: los tratados eran mejores de base. SDO sobreestima por 7.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q3</span>
+  <p class="question">Bajo independence, ¿SDO = 0?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p><b>NO.</b> SDO = ATE (sin sesgo). El ATE puede ser cualquier número. Independence quita el sesgo, no el efecto.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q4</span>
+  <p class="question">Datos: E[Y|D=1]=90, E[Y|D=0]=80, E[Y(0)|D=1]=84, E[Y(0)|D=0]=80. Calcula SDO, ATT, SB.</p>
+  <details><summary>Ver respuesta</summary><div>
+    <div class="math">
+      SDO = 90 − 80 = <b>10</b><br>
+      ATT = 90 − 84 = <b>6</b><br>
+      SB = 84 − 80 = <b>4</b><br>
+      Check: 6 + 4 = 10 ✓
+    </div>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q5</span>
+  <p class="question">¿Qué identifica el LATE? ¿Para quién?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p>Efecto causal del tratamiento <b>solo para compliers</b> (los que cambian su comportamiento según la asignación). No es para todos.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q6</span>
+  <p class="question">RCT: Ȳ(Z=1)=75, Ȳ(Z=0)=70, P(D=1|Z=1)=0.80, P(D=1|Z=0)=0.20. Calcula todo.</p>
+  <details><summary>Ver respuesta</summary><div>
+    <div class="math">
+      ITT = 75 − 70 = <b>5</b><br>
+      FS = 0.80 − 0.20 = <b>0.60</b><br>
+      LATE = 5 / 0.60 = <b>8.33</b><br>
+      Compliers = <b>60%</b><br>
+      Always-takers = 0.20 = <b>20%</b><br>
+      Never-takers = 1−0.80 = <b>20%</b><br>
+      Sum = 60+20+20 = 100% ✓ &nbsp; |8.33| ≥ |5| ✓
+    </div>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q7</span>
+  <p class="question">¿Cuáles son los 4 supuestos del LATE?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p>1) Independence (Z aleatorio). 2) Exclusion (Z→Y solo vía D). 3) First stage (Z cambia D). 4) Monotonicity (no defiers).</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q8</span>
+  <p class="question">DiD: Tratados pre=50, post=65. Control pre=45, post=52. ¿DiD?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <div class="math">DiD = (65−50) − (52−45) = 15 − 7 = <b>8</b></div>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q9</span>
+  <p class="question">β₀=200, β₁=30, β₂=15, β₃=−10. Reconstruye la tabla y di el efecto causal.</p>
+  <details><summary>Ver respuesta</summary><div>
+    <div class="math">
+      C = 200, A = 230, D = 215, B = 235<br>
+      Efecto causal = β₃ = <b>−10</b><br>
+      Check: (235−230)−(215−200) = 5−15 = −10 ✓
+    </div>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q10</span>
+  <p class="question">¿Parallel trends significa que los grupos tienen el mismo nivel?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p><b>NO.</b> Pueden tener niveles diferentes (β₁ ≠ 0). Lo que importa es que <b>cambien al mismo ritmo</b>. Misma tendencia ≠ mismo nivel.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q11</span>
+  <p class="question">Si pre-trends son ≈ 0, ¿eso prueba parallel trends?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p><b>NO.</b> Es solo evidencia sugestiva. Las tendencias podrían divergir justo al momento del tratamiento. No es prueba.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q12</span>
+  <p class="question">¿Qué es un bad control? Ejemplo.</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p>Variable medida POST-tratamiento que puede ser afectada por él. Ejemplo: controlar por "ingreso actual" en estudio de programa de empleo — el programa puede haber cambiado el ingreso.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q13</span>
+  <p class="question">¿Cuándo LATE = ATE?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p>Cuando todos son compliers (compliance perfecta, FS=1) o cuando el efecto es homogéneo (el tratamiento afecta igual a todos).</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q14</span>
+  <p class="question">RCT con compliance perfecta. ¿Qué identificas?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p><b>ATE.</b> Con compliance perfecta: Z=D, ITT=LATE=ATE. El SDO es insesgado y estima el ATE.</p>
+  </div></details>
+</div>
+
+<div class="quiz-block">
+  <span class="qnum">Q15</span>
+  <p class="question">¿Se viola SUTVA si un programa de vacunación vacuna a parte de la población?</p>
+  <details><summary>Ver respuesta</summary><div>
+    <p><b>Sí.</b> Se viola la no-interferencia: si yo me vacuno, tú estás más protegido por la inmunidad de grupo, aunque no estés vacunado. El tratamiento de i afecta el resultado de j.</p>
+  </div></details>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="level level-purple" id="cheat">
+  <div class="tag">REFERENCIA RÁPIDA</div>
+  <h2>CHEAT SHEET: Cómo Responder Cada Pregunta</h2>
+</div>
+
+<div class="card">
+  <table>
+    <tr><th>Pregunta</th><th>Respuesta rápida</th></tr>
+    <tr><td><b>"Calcula SDO"</b></td><td>Ē(tratados) − Ē(controles)</td></tr>
+    <tr><td><b>"Descompón SDO"</b></td><td>SDO = ATT + SB. Calcula cada uno. Verifica suma.</td></tr>
+    <tr><td><b>"¿SDO sesgado?"</b></td><td>Sí, a menos que haya randomización (independence).</td></tr>
+    <tr><td><b>"Calcula ITT"</b></td><td>Ē(Y|<b>Z</b>=1) − Ē(Y|<b>Z</b>=0). Usa Z, NO D.</td></tr>
+    <tr><td><b>"Calcula LATE"</b></td><td>ITT / First Stage. Verifica |LATE| ≥ |ITT|.</td></tr>
+    <tr><td><b>"% compliers"</b></td><td>= First Stage = P(D=1|Z=1) − P(D=1|Z=0)</td></tr>
+    <tr><td><b>"Calcula DiD"</b></td><td>(B−A)−(D−C). Llena tabla primero.</td></tr>
+    <tr><td><b>"¿Qué es β₃?"</b></td><td>= DiD = efecto causal</td></tr>
+    <tr><td><b>"De betas → tabla"</b></td><td>C=β₀, A=β₀+β₁, D=β₀+β₂, B=β₀+β₁+β₂+β₃</td></tr>
+    <tr><td><b>"¿Qué identifica?"</b></td><td>RCT perfecto→ATE. Non-compliance→LATE. DiD→ATT.</td></tr>
+    <tr><td><b>"¿Se viola SUTVA?"</b></td><td>¿Tto. de uno afecta a otro? ¿Versiones distintas?</td></tr>
+    <tr><td><b>"¿Creíble DiD?"</b></td><td>Parallel trends, pre-trends, shocks, Ashenfelter dip</td></tr>
+    <tr><td><b>"¿LATE = ATE?"</b></td><td>Cuando todos son compliers o efecto homogéneo</td></tr>
+  </table>
+</div>
+
+<div class="final">
+  <h3>Ya tienes todo. Ahora repasa las Q1-Q15 sin ver respuestas.</h3>
+  <p>Si puedes responder las 15 sin mirar → estás listo para mañana.</p>
+  <p>Si fallas alguna → relee solo esa sección. No releas todo.</p>
+</div>
+
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+</script>
+
+</body>
+</html>
