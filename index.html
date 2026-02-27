@@ -1,973 +1,2413 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AEM 6121 — Guía TDA-Optimizada</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEM 6121 Applied Econometrics II - Ultimate Exam Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: #0f0f1a;
-    color: #e2e8f0;
-    line-height: 1.65;
-    padding: 0;
-  }
+        body {
+            background-color: #0a0e27;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
 
-  /* ── PROGRESS BAR ── */
-  .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 4px;
-    background: linear-gradient(90deg, #f6e05e, #48bb78, #4299e1, #9f7aea);
-    z-index: 200;
-    transition: width 0.3s;
-  }
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d084, #0066ff, #ff1493, #ffd700);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
 
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 4px;
-    z-index: 100;
-    background: rgba(15,15,26,0.95);
-    backdrop-filter: blur(10px);
-    padding: 8px 16px;
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  nav a {
-    color: #e2e8f0;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 6px;
-    transition: all 0.2s;
-    letter-spacing: 0.3px;
-  }
-  nav a:hover { transform: translateY(-1px); filter: brightness(1.2); }
-  nav a.c1 { background: #805ad5; }
-  nav a.c2 { background: #38a169; }
-  nav a.c3 { background: #3182ce; }
-  nav a.c4 { background: #e53e3e; }
-  nav a.c5 { background: #d69e2e; }
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: #0f1333;
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #1a2856;
+            z-index: 999;
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
 
-  .container { max-width: 820px; margin: 0 auto; padding: 20px 20px 60px; }
+        nav a {
+            color: #00d084;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
 
-  /* ── HERO ── */
-  .hero {
-    text-align: center;
-    padding: 32px 20px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-size: 32px;
-    font-weight: 900;
-    background: linear-gradient(135deg, #f6e05e, #48bb78, #63b3ed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 8px;
-  }
-  .hero p { color: #718096; font-size: 14px; }
-  .hero .badges {
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .hero .badge {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 11px;
-    color: #a0aec0;
-    font-weight: 600;
-  }
+        nav a:hover {
+            background-color: #1a2856;
+            color: #00ff99;
+        }
 
-  /* ── LEVEL HEADERS ── */
-  .level {
-    margin: 32px 0 16px;
-    padding: 16px 20px;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-  }
-  .level::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    opacity: 0.15;
-    z-index: 0;
-  }
-  .level h2 {
-    position: relative;
-    z-index: 1;
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-  }
-  .level .tag {
-    position: relative;
-    z-index: 1;
-    font-size: 11px;
-    font-weight: 700;
-    opacity: 0.7;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
+        nav a.active {
+            background-color: #00d084;
+            color: #0a0e27;
+        }
 
-  .level-purple { background: rgba(128,90,213,0.15); border: 1px solid rgba(128,90,213,0.3); }
-  .level-purple h2 { color: #d6bcfa; }
-  .level-green { background: rgba(56,161,105,0.15); border: 1px solid rgba(56,161,105,0.3); }
-  .level-green h2 { color: #9ae6b4; }
-  .level-blue { background: rgba(49,130,206,0.15); border: 1px solid rgba(49,130,206,0.3); }
-  .level-blue h2 { color: #90cdf4; }
-  .level-red { background: rgba(229,62,62,0.15); border: 1px solid rgba(229,62,62,0.3); }
-  .level-red h2 { color: #feb2b2; }
-  .level-yellow { background: rgba(214,158,46,0.15); border: 1px solid rgba(214,158,46,0.3); }
-  .level-yellow h2 { color: #fefcbf; }
+        /* Main container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
 
-  /* ── CARDS ── */
-  .card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin: 12px 0;
-  }
-  .card h3 {
-    font-size: 15px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: #f7fafc;
-  }
-  p { font-size: 14px; margin: 6px 0; color: #cbd5e0; }
-  p b { color: #f7fafc; }
-  .small { font-size: 12.5px; color: #a0aec0; }
+        /* Section styling */
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 100px;
+        }
 
-  /* ── SPECIAL BOXES ── */
-  .think {
-    background: rgba(99,179,237,0.1);
-    border: 1px solid rgba(99,179,237,0.25);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin: 10px 0;
-    font-size: 14px;
-    color: #90cdf4;
-  }
-  .think::before {
-    content: "PIÉNSALO ASÍ →";
-    display: block;
-    font-weight: 900;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: #63b3ed;
-    margin-bottom: 4px;
-  }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid;
+            padding-bottom: 0.5rem;
+        }
 
-  .math {
-    background: rgba(128,90,213,0.12);
-    border: 1px solid rgba(128,90,213,0.25);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin: 10px 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: #d6bcfa;
-    line-height: 2;
-  }
-  .math .grey { color: #718096; font-size: 11.5px; }
+        .section-header.part0 {
+            border-color: #ffd700;
+        }
 
-  .do-this {
-    background: rgba(56,161,105,0.12);
-    border: 2px solid rgba(56,161,105,0.3);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin: 10px 0;
-    font-size: 13.5px;
-    color: #9ae6b4;
-  }
-  .do-this::before {
-    content: "EJEMPLO RESUELTO";
-    display: block;
-    font-weight: 900;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: #48bb78;
-    margin-bottom: 6px;
-  }
-  .do-this b { color: #f7fafc; }
-  .do-this .result {
-    background: rgba(56,161,105,0.2);
-    border-radius: 6px;
-    padding: 8px 12px;
-    margin-top: 8px;
-    color: #c6f6d5;
-    font-weight: 600;
-  }
+        .section-header.part1 {
+            border-color: #00d084;
+        }
 
-  .trap {
-    background: rgba(229,62,62,0.1);
-    border: 2px solid rgba(229,62,62,0.3);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin: 10px 0;
-    font-size: 13.5px;
-    color: #feb2b2;
-  }
-  .trap::before {
-    content: "TRAMPA DEL EXAMEN";
-    display: block;
-    font-weight: 900;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: #fc8181;
-    margin-bottom: 4px;
-  }
+        .section-header.part2 {
+            border-color: #0066ff;
+        }
 
-  .exam-q {
-    background: rgba(214,158,46,0.12);
-    border: 2px solid rgba(214,158,46,0.3);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin: 10px 0;
-    font-size: 13.5px;
-    color: #fefcbf;
-  }
-  .exam-q::before {
-    content: "EN EL EXAMEN, HAZ ESTO";
-    display: block;
-    font-weight: 900;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: #ecc94b;
-    margin-bottom: 6px;
-  }
+        .section-header.part3 {
+            border-color: #ff1493;
+        }
 
-  .checkpoint {
-    background: linear-gradient(135deg, rgba(128,90,213,0.2), rgba(49,130,206,0.2));
-    border: 2px solid rgba(128,90,213,0.3);
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin: 20px 0;
-    text-align: center;
-  }
-  .checkpoint h3 {
-    color: #d6bcfa;
-    font-size: 14px;
-    margin-bottom: 6px;
-  }
-  .checkpoint p { color: #a0aec0; font-size: 13px; }
+        .section-header.part5 {
+            border-color: #ffd700;
+        }
 
-  /* ── TABLES ── */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-    font-size: 13px;
-  }
-  th {
-    background: rgba(255,255,255,0.06);
-    padding: 8px 10px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 11px;
-    color: #a0aec0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  td {
-    padding: 7px 10px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    color: #cbd5e0;
-  }
-  td b { color: #f7fafc; }
+        .section-header.part6 {
+            border-color: #9933ff;
+        }
 
-  /* ── QUIZ ── */
-  .quiz-block {
-    background: rgba(255,255,255,0.03);
-    border: 2px solid rgba(128,90,213,0.3);
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin: 12px 0;
-  }
-  .quiz-block .qnum {
-    display: inline-block;
-    background: #805ad5;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 6px;
-  }
-  .quiz-block .question {
-    font-weight: 700;
-    font-size: 14px;
-    color: #f7fafc;
-    margin-bottom: 8px;
-  }
-  details {
-    margin: 6px 0;
-    background: rgba(128,90,213,0.08);
-    border-radius: 8px;
-    padding: 0 12px;
-  }
-  details summary {
-    cursor: pointer;
-    font-weight: 700;
-    color: #d6bcfa;
-    padding: 8px 0;
-    font-size: 13px;
-  }
-  details summary:hover { color: #e9d8fd; }
-  details > div { padding: 4px 0 10px; }
-  details p { color: #cbd5e0; font-size: 13px; }
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
 
-  /* STEP MARKERS */
-  .step {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #805ad5;
-    color: #fff;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    font-size: 11px;
-    font-weight: 800;
-    margin-right: 4px;
-    flex-shrink: 0;
-  }
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-  .divider {
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    margin: 24px 0;
-  }
+        /* Content blocks */
+        .block {
+            background-color: #0f1333;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
 
-  .final {
-    background: linear-gradient(135deg, #553c9a, #2b6cb0);
-    border-radius: 14px;
-    padding: 24px 20px;
-    margin: 28px 0;
-    text-align: center;
-  }
-  .final h3 { font-size: 18px; color: #fff; margin-bottom: 8px; }
-  .final p { color: #e9d8fd; font-size: 13px; }
+        .block:hover {
+            background-color: #141952;
+            transform: translateX(5px);
+        }
 
-  /* Responsive */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  @media (max-width: 700px) {
-    .two-col { grid-template-columns: 1fr; }
-  }
-</style>
+        .block.intuition {
+            border-color: #0099ff;
+            background-color: rgba(0, 153, 255, 0.05);
+        }
+
+        .block.formula {
+            border-color: #9933ff;
+            background-color: rgba(153, 51, 255, 0.05);
+        }
+
+        .block.example {
+            border-color: #00d084;
+            background-color: rgba(0, 208, 132, 0.05);
+        }
+
+        .block.trap {
+            border-color: #ff4444;
+            background-color: rgba(255, 68, 68, 0.08);
+        }
+
+        .block.tip {
+            border-color: #ffd700;
+            background-color: rgba(255, 215, 0, 0.05);
+        }
+
+        .block h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .block p {
+            margin-bottom: 0.8rem;
+        }
+
+        .block.intuition h3::before {
+            content: "💡 ";
+            margin-right: 0.5rem;
+        }
+
+        .block.formula h3::before {
+            content: "∑ ";
+            margin-right: 0.5rem;
+        }
+
+        .block.example h3::before {
+            content: "✓ ";
+            margin-right: 0.5rem;
+        }
+
+        .block.trap h3::before {
+            content: "⚠ ";
+            margin-right: 0.5rem;
+        }
+
+        .block.tip h3::before {
+            content: "★ ";
+            margin-right: 0.5rem;
+        }
+
+        /* Formula styling */
+        .formula-box {
+            background-color: rgba(153, 51, 255, 0.1);
+            border: 2px solid #9933ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .formula-box .label {
+            color: #00d084;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grid for comparisons */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-cell {
+            background-color: rgba(0, 153, 255, 0.1);
+            border: 2px solid #0099ff;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .comparison-cell h4 {
+            color: #00d084;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Collapsible questions */
+        .question {
+            background-color: #141952;
+            border-left: 4px solid #0099ff;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .question-header {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #141952;
+            transition: all 0.3s ease;
+        }
+
+        .question-header:hover {
+            background-color: #1a2256;
+        }
+
+        .question-header.active {
+            background-color: #1a3d5c;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: #00d084;
+            margin-right: 1rem;
+            min-width: 60px;
+        }
+
+        .question-text {
+            flex-grow: 1;
+            color: #e0e0e0;
+        }
+
+        .toggle-icon {
+            color: #00d084;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .question-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .question-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .question-header.active + .question-answer {
+            max-height: 2000px;
+        }
+
+        .answer-content {
+            padding: 1.5rem;
+            background-color: rgba(0, 208, 132, 0.05);
+            border-top: 2px solid #0099ff;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: #141952;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #0f1333;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #00d084;
+            border-bottom: 2px solid #1a2856;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(0, 153, 255, 0.2);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: rgba(0, 153, 255, 0.1);
+        }
+
+        /* Bilingual text */
+        .es {
+            color: #ff9999;
+            font-style: italic;
+        }
+
+        /* Strong highlighting */
+        strong {
+            color: #00ff99;
+            font-weight: 600;
+        }
+
+        em {
+            color: #ffb366;
+            font-style: italic;
+        }
+
+        /* List styling */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            border-top: 2px solid #1a2856;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            nav {
+                padding: 0.8rem;
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Quick reference box */
+        .quick-ref {
+            background: linear-gradient(135deg, rgba(0, 208, 132, 0.1), rgba(0, 153, 255, 0.1));
+            border: 2px solid #00d084;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .quick-ref h4 {
+            color: #00d084;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Highlight boxes */
+        .highlight {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: #ffd700;
+        }
+    </style>
 </head>
 <body>
-
-<div class="progress-bar" id="progressBar"></div>
-
-<nav>
-  <a href="#L0" class="c1">Start</a>
-  <a href="#L1" class="c2">Rubin</a>
-  <a href="#L1b" class="c2">SDO</a>
-  <a href="#L2" class="c3">RCT</a>
-  <a href="#L2b" class="c3">LATE</a>
-  <a href="#L3" class="c4">DiD</a>
-  <a href="#L3b" class="c4">Regresión</a>
-  <a href="#L4" class="c5">Practice</a>
-  <a href="#cheat" class="c1">Cheat</a>
-</nav>
-
-<div class="container">
-
-<div class="hero">
-  <h1>CRASH COURSE PARA TDA</h1>
-  <p>Bloques cortos. Sin relleno. Con números. Listo para el examen.</p>
-  <div class="badges">
-    <span class="badge">~35 min lectura</span>
-    <span class="badge">3 temas</span>
-    <span class="badge">11 ejemplos resueltos</span>
-    <span class="badge">15 preguntas práctica</span>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="level level-purple" id="L0">
-  <div class="tag">NIVEL 0 · BASE</div>
-  <h2>La Única Pregunta del Curso</h2>
-</div>
-
-<div class="card">
-  <h3>¿X causa Y?</h3>
-  <p>Todo el curso se reduce a esto. Quieres saber si algo (X) <b>causa</b> un resultado (Y).</p>
-  <p>Ejemplo: ¿ir a clases particulares <b>causa</b> mejores notas?</p>
-</div>
-
-<div class="card">
-  <h3>Los Dos Mundos (Potential Outcomes)</h3>
-  <p>Para cada persona existen <b>dos realidades</b>:</p>
-  <p><b>Y(1)</b> = lo que le pasa SI recibe tratamiento</p>
-  <p><b>Y(0)</b> = lo que le pasa si NO recibe tratamiento</p>
-  <p>El efecto causal = Y(1) − Y(0) para esa persona.</p>
-</div>
-
-<div class="think">
-  María va a clases y saca 85. ¿Las clases causaron el 85? No sabes, porque no puedes ver qué habría sacado SIN clases. Quizás habría sacado 70 (efecto = 15) o 84 (efecto = 1). <b>Nunca lo sabrás.</b> Eso es el problema fundamental.
-</div>
-
-<div class="trap">
-  <b>D=1 NO significa Y(0)=0.</b> Si alguien recibió tratamiento (D=1), solo VES su Y(1). Su Y(0) sigue existiendo, simplemente no lo observas. No es cero.
-</div>
-
-<div class="card">
-  <h3>La Switching Equation</h3>
-  <div class="math">
-    Yᵢ = Dᵢ · Yᵢ(1) + (1 − Dᵢ) · Yᵢ(0)
-  </div>
-  <p>Si D=1 → ves Y(1). Si D=0 → ves Y(0). Nunca los dos.</p>
-</div>
-
-<div class="checkpoint">
-  <h3>CHECKPOINT: ¿Entendiste esto?</h3>
-  <p>Cada persona tiene dos resultados posibles. Solo ves uno. Ese es TODO el problema.</p>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="level level-green" id="L1">
-  <div class="tag">NIVEL 1 · RUBIN CAUSAL MODEL</div>
-  <h2>Los Parámetros que Quieres Medir</h2>
-</div>
-
-<div class="two-col">
-  <div class="card">
-    <h3>ATE</h3>
-    <p><b>Average Treatment Effect</b></p>
-    <p>Efecto promedio para <b>TODOS</b>.</p>
-    <div class="math">ATE = E[Y(1) − Y(0)]</div>
-  </div>
-  <div class="card">
-    <h3>ATT</h3>
-    <p><b>Avg Treatment on the Treated</b></p>
-    <p>Efecto promedio para los que <b>SÍ se trataron</b>.</p>
-    <div class="math">ATT = E[Y(1)−Y(0) | D=1]</div>
-  </div>
-</div>
-<div class="two-col">
-  <div class="card">
-    <h3>ATU</h3>
-    <p><b>Avg Treatment on the Untreated</b></p>
-    <p>Efecto para los que <b>NO</b> se trataron.</p>
-    <div class="math">ATU = E[Y(1)−Y(0) | D=0]</div>
-  </div>
-  <div class="card">
-    <h3>Relación entre ellos</h3>
-    <div class="math">ATE = p · ATT + (1−p) · ATU</div>
-    <p>p = proporción de tratados.</p>
-  </div>
-</div>
-
-<div class="do-this">
-  <b>100 personas. 40 tratadas (p=0.4). ATT=15, ATU=5.</b><br>
-  ATE = 0.4 × 15 + 0.6 × 5 = 6 + 3
-  <div class="result">ATE = 9</div>
-</div>
-
-<hr class="divider">
-
-<!-- SDO -->
-<div class="level level-green" id="L1b">
-  <div class="tag">NIVEL 1B · CLAVE</div>
-  <h2>SDO y Su Descomposición</h2>
-</div>
-
-<div class="card">
-  <h3>SDO = Simple Difference in Outcomes</h3>
-  <div class="math">SDO = E[Y | D=1] − E[Y | D=0]</div>
-  <p>= Promedio tratados − Promedio controles. Fácil de calcular. <b>Casi siempre sesgado.</b></p>
-</div>
-
-<div class="think">
-  Los que van a clases particulares sacan mejor nota. ¿Es por las clases, o porque ya eran mejores estudiantes? Si los grupos son diferentes desde el inicio, la comparación simple está contaminada. Eso es el <b>selection bias</b>.
-</div>
-
-<div class="card">
-  <h3>⭐ Descomposición del SDO (MEMORIZA ESTO)</h3>
-
-  <p><b>Versión 1 (dos partes):</b></p>
-  <div class="math">
-    SDO = ATT + Selection Bias<br>
-    <span class="grey">SB = E[Y(0)|D=1] − E[Y(0)|D=0]</span>
-  </div>
-  <p class="small">SB = "qué tan diferentes eran los grupos SIN tratamiento"</p>
-
-  <p><b>Versión 2 (tres partes):</b></p>
-  <div class="math">
-    SDO = ATE + SB + (1−p)(ATT − ATU)<br>
-    <span class="grey">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑ HTE bias</span>
-  </div>
-</div>
-
-<div class="card">
-  <h3>¿Qué significa cada parte?</h3>
-  <table>
-    <tr><th>Parte</th><th>Significado</th><th>¿Cuándo = 0?</th></tr>
-    <tr><td><b>Selection Bias</b></td><td>Grupos diferentes de base</td><td>Randomización</td></tr>
-    <tr><td><b>HTE bias</b></td><td>El tto. afecta distinto a cada grupo</td><td>ATT = ATU (efecto homogéneo)</td></tr>
-  </table>
-</div>
-
-<div class="do-this">
-  <b>Datos:</b> E[Y|D=1] = 82, E[Y|D=0] = 70, E[Y(0)|D=1] = 74, E[Y(0)|D=0] = 70<br><br>
-  <span class="step">1</span> SDO = 82 − 70 = <b>12</b><br>
-  <span class="step">2</span> ATT = E[Y(1)|D=1] − E[Y(0)|D=1] = 82 − 74 = <b>8</b><br>
-  <span class="step">3</span> SB = 74 − 70 = <b>4</b>
-  <div class="result">Verificación: SDO = 8 + 4 = 12 ✓ → El SDO sobreestima por 4 (el sesgo)</div>
-</div>
-
-<div class="card">
-  <h3>Independence y SUTVA</h3>
-  <p><b>Independence:</b> (Y(1),Y(0)) ⊥⊥ D → los potential outcomes no dependen de quién se trata. Se logra con <b>randomización</b>. Resultado: SB = 0, HTE = 0, <b>SDO = ATE</b>.</p>
-  <p><b>SUTVA:</b> (1) Mi tratamiento no afecta tu resultado. (2) Todos reciben la misma versión del tratamiento.</p>
-</div>
-
-<div class="trap">
-  <b>Independence NO significa SDO = 0.</b> Significa SDO = ATE. El efecto puede ser enorme. Solo no tiene sesgo.
-</div>
-
-<div class="checkpoint">
-  <h3>CHECKPOINT: ¿Puedes hacer esto?</h3>
-  <p>Te dan promedios de tratados y controles → calcula SDO → descompón en ATT + SB → verifica</p>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="level level-blue" id="L2">
-  <div class="tag">NIVEL 2 · RCT CON NON-COMPLIANCE</div>
-  <h2>Cuando la Gente No Obedece</h2>
-</div>
-
-<div class="card">
-  <h3>Dos Variables Diferentes</h3>
-  <table>
-    <tr><th>Variable</th><th>Qué es</th><th>Tipo</th></tr>
-    <tr><td><b>Z</b></td><td>Lo que el investigador ASIGNÓ (sorteo)</td><td>Exógeno (limpio)</td></tr>
-    <tr><td><b>D</b></td><td>Lo que la persona REALMENTE HIZO</td><td>Endógeno (contaminado)</td></tr>
-  </table>
-</div>
-
-<div class="think">
-  Sorteas quién va a clases de apoyo. Pero algunos asignados no van, y algunos no asignados se meten igual. Ahora Z (lo que asignaste) ≠ D (lo que hicieron).
-</div>
-
-<div class="card">
-  <h3>4 Tipos de Personas</h3>
-  <table>
-    <tr><th>Tipo</th><th>Le toca Z=1</th><th>Le toca Z=0</th><th>En español</th></tr>
-    <tr><td><b>Complier ✅</b></td><td>D=1</td><td>D=0</td><td>Obedece siempre</td></tr>
-    <tr><td><b>Always-taker</b></td><td>D=1</td><td>D=1</td><td>Se trata siempre</td></tr>
-    <tr><td><b>Never-taker</b></td><td>D=0</td><td>D=0</td><td>Nunca se trata</td></tr>
-    <tr><td><b>Defier</b></td><td>D=0</td><td>D=1</td><td>Hace lo opuesto (asumimos = 0)</td></tr>
-  </table>
-</div>
-
-<div class="exam-q">
-  <b>¿Te piden calcular proporciones de cada tipo?</b><br><br>
-  <span class="step">1</span> <b>Compliers</b> = P(D=1|Z=1) − P(D=1|Z=0)<br>
-  <span class="step">2</span> <b>Always-takers</b> = P(D=1|Z=0)<br>
-  <span class="step">3</span> <b>Never-takers</b> = 1 − P(D=1|Z=1)<br>
-  <span class="step">4</span> <b>Defiers</b> = 0<br>
-  <span class="step">✓</span> <b>Verificar:</b> deben sumar 100%
-</div>
-
-<div class="do-this">
-  <b>De 200 con Z=1: 150 participaron. De 200 con Z=0: 30 participaron.</b><br><br>
-  P(D=1|Z=1) = 150/200 = <b>0.75</b><br>
-  P(D=1|Z=0) = 30/200 = <b>0.15</b>
-  <div class="result">
-    Compliers = 0.75 − 0.15 = <b>60%</b><br>
-    Always-takers = 0.15 = <b>15%</b><br>
-    Never-takers = 1 − 0.75 = <b>25%</b><br>
-    Total: 60+15+25 = 100% ✓
-  </div>
-</div>
-
-<hr class="divider">
-
-<div class="level level-blue" id="L2b">
-  <div class="tag">NIVEL 2B · LOS TRES ESTIMADORES</div>
-  <h2>ITT → First Stage → LATE</h2>
-</div>
-
-<div class="card">
-  <h3>⭐ ITT (Intent to Treat)</h3>
-  <div class="math">ITT = E[Y | Z=1] − E[Y | Z=0]</div>
-  <p>Efecto de ser <b>ASIGNADO</b>. Usa Z, no D. Está "diluido" porque incluye gente que no cumplió.</p>
-</div>
-
-<div class="card">
-  <h3>⭐ First Stage</h3>
-  <div class="math">FS = P(D=1|Z=1) − P(D=1|Z=0)</div>
-  <p>= % de compliers. ¿Cuánto cambia la participación REAL por la asignación?</p>
-</div>
-
-<div class="card">
-  <h3>⭐ LATE (Local Avg Treatment Effect)</h3>
-  <div class="math">LATE = ITT / First Stage</div>
-  <p>Efecto del tratamiento <b>para COMPLIERS solamente</b>.</p>
-</div>
-
-<div class="think">
-  ITT está diluido (incluye gente que no hizo caso). Al dividir por el % que sí hizo caso, "concentras" el efecto. Por eso <b>|LATE| ≥ |ITT| siempre</b>.
-</div>
-
-<div class="do-this">
-  <b>Ȳ(Z=1) = 78, Ȳ(Z=0) = 72, First Stage = 0.60</b><br><br>
-  <span class="step">1</span> ITT = 78 − 72 = <b>6</b><br>
-  <span class="step">2</span> LATE = 6 / 0.60 = <b>10</b>
-  <div class="result">
-    Ser asignado mejora nota 6 pts (ITT).<br>
-    Realmente participar mejora nota 10 pts para compliers (LATE).<br>
-    |10| ≥ |6| ✓
-  </div>
-</div>
-
-<div class="card">
-  <h3>4 Supuestos del LATE</h3>
-  <table>
-    <tr><th>#</th><th>Nombre</th><th>En simple</th></tr>
-    <tr><td>1</td><td><b>Independence</b></td><td>Z es aleatorio</td></tr>
-    <tr><td>2</td><td><b>Exclusion</b></td><td>Z→Y SOLO a través de D</td></tr>
-    <tr><td>3</td><td><b>First Stage</b></td><td>Z sí cambia D</td></tr>
-    <tr><td>4</td><td><b>Monotonicity</b></td><td>No hay defiers</td></tr>
-  </table>
-</div>
-
-<div class="trap">
-  Si tu LATE sale MENOR que tu ITT (en valor absoluto), <b>te equivocaste</b>. Revisa los números.
-</div>
-
-<div class="card">
-  <h3>Extras: Fisher Sharp Null y Bad Controls</h3>
-  <p><b>Fisher sharp null:</b> H₀: τᵢ = 0 para TODOS (no solo en promedio). Más fuerte que "ATE=0".</p>
-  <p><b>Bad controls:</b> Variable medida DESPUÉS del tratamiento. No controles por ella. Solo usa variables de ANTES.</p>
-</div>
-
-<div class="checkpoint">
-  <h3>CHECKPOINT: ¿Puedes hacer esto?</h3>
-  <p>Te dan datos de un RCT → calcular ITT, FS, LATE, % de cada tipo → verificar |LATE| ≥ |ITT|</p>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="level level-red" id="L3">
-  <div class="tag">NIVEL 3 · DIFF-IN-DIFF</div>
-  <h2>DiD: Cuando No Puedes Randomizar</h2>
-</div>
-
-<div class="think">
-  No puedes hacer un experimento. Pero tienes datos de antes y después para un grupo tratado y uno control. Ejemplo: un estado sube el salario mínimo, otro no. Tienes datos de empleo antes y después.
-</div>
-
-<div class="card">
-  <h3>La Tabla 2×2 (MEMORIZA ESTO)</h3>
-  <table>
-    <tr><th></th><th>Antes (Pre)</th><th>Después (Post)</th><th>Cambio</th></tr>
-    <tr><td><b>Tratados</b></td><td><b>A</b></td><td><b>B</b></td><td>B − A</td></tr>
-    <tr><td><b>Control</b></td><td><b>C</b></td><td><b>D</b></td><td>D − C</td></tr>
-  </table>
-  <div class="math">DiD = (B − A) − (D − C)</div>
-</div>
-
-<div class="think">
-  <span class="step">1</span> ¿Cuánto cambió el tratado? → B − A<br>
-  <span class="step">2</span> ¿Cuánto cambió el control? → D − C<br>
-  <span class="step">3</span> Resta → el control te dice cuánto habría cambiado el tratado sin tratamiento. La diferencia = efecto causal.
-</div>
-
-<div class="do-this">
-  <table>
-    <tr><th></th><th>Antes</th><th>Después</th></tr>
-    <tr><td><b>Estado tratado</b></td><td>100</td><td>95</td></tr>
-    <tr><td><b>Estado control</b></td><td>110</td><td>108</td></tr>
-  </table>
-  <br>
-  <span class="step">1</span> Cambio tratado = 95 − 100 = <b>−5</b><br>
-  <span class="step">2</span> Cambio control = 108 − 110 = <b>−2</b><br>
-  <span class="step">3</span> DiD = (−5) − (−2) = <b>−3</b>
-  <div class="result">El salario mínimo redujo empleo en 3 mil. Los −5 incluían −2 de tendencia natural.</div>
-</div>
-
-<hr class="divider">
-
-<div class="level level-red" id="L3b">
-  <div class="tag">NIVEL 3B · LA REGRESIÓN</div>
-  <h2>DiD en Forma de Regresión</h2>
-</div>
-
-<div class="card">
-  <div class="math">Yᵢₜ = β₀ + β₁·Dᵢ + β₂·Postₜ + β₃·(Dᵢ × Postₜ) + εᵢₜ</div>
-  <table>
-    <tr><th>Coef.</th><th>= qué</th><th>= celda</th></tr>
-    <tr><td><b>β₀</b></td><td>Control, pre</td><td>= C</td></tr>
-    <tr><td><b>β₁</b></td><td>Dif. entre grupos al inicio</td><td>= A − C</td></tr>
-    <tr><td><b>β₂</b></td><td>Cambio temporal del control</td><td>= D − C</td></tr>
-    <tr><td style="color:#fc8181;"><b>β₃</b></td><td><b>EFECTO CAUSAL DiD</b></td><td>= (B−A)−(D−C)</td></tr>
-  </table>
-</div>
-
-<div class="exam-q">
-  <b>Si te dan β₀, β₁, β₂, β₃ y piden la tabla:</b><br><br>
-  C = β₀<br>
-  A = β₀ + β₁<br>
-  D = β₀ + β₂<br>
-  B = β₀ + β₁ + β₂ + β₃
-</div>
-
-<div class="do-this">
-  <b>β₀=110, β₁=−10, β₂=−2, β₃=−3</b><br><br>
-  C = 110 &nbsp;|&nbsp; A = 110+(−10) = 100<br>
-  D = 110+(−2) = 108 &nbsp;|&nbsp; B = 110+(−10)+(−2)+(−3) = 95
-  <div class="result">DiD = (95−100)−(108−110) = −5−(−2) = −3 = β₃ ✓</div>
-</div>
-
-<div class="card">
-  <h3>Parallel Trends (SUPUESTO CLAVE)</h3>
-  <p><b>Qué dice:</b> Sin tratamiento, el grupo tratado habría seguido la misma tendencia que el control.</p>
-  <p><b>No se puede probar.</b> Solo puedes mostrar evidencia sugestiva (pre-trends).</p>
-</div>
-
-<div class="trap">
-  <b>Parallel trends ≠ mismos niveles.</b> A puede ser diferente de C (eso es β₁). Lo que importa es que <b>cambien al mismo ritmo</b>.<br><br>
-  <b>Pre-trends ≈ 0 NO prueba parallel trends.</b> Solo es evidencia.
-</div>
-
-<div class="card">
-  <h3>Event Study</h3>
-  <div class="math">
-    Yᵢₜ = αᵢ + λₜ + Σ(k≠−1) δₖ·Dᵢ·𝟙(t=k) + εᵢₜ
-  </div>
-  <p><b>k &lt; 0:</b> Pre-tratamiento. δₖ debería ≈ 0 (si no → problema).</p>
-  <p><b>k ≥ 0:</b> Post-tratamiento. δₖ = efectos en cada periodo.</p>
-  <p><b>k = −1:</b> Se omite (periodo de referencia).</p>
-  <p><b>αᵢ</b> = fixed effects de unidad. <b>λₜ</b> = fixed effects de tiempo.</p>
-</div>
-
-<div class="card">
-  <h3>DiD identifica: ATT</h3>
-  <p>Efecto promedio sobre los tratados. Bajo el supuesto de parallel trends.</p>
-</div>
-
-<div class="exam-q">
-  <b>"¿Es creíble el DiD?"</b> → Discute:<br>
-  <span class="step">1</span> ¿Pre-trends paralelos?<br>
-  <span class="step">2</span> ¿Hubo shock diferencial (algo que solo afectó a un grupo)?<br>
-  <span class="step">3</span> ¿Ashenfelter dip (tratados bajan justo antes)?<br>
-  <span class="step">4</span> ¿Cambió la composición de los grupos?
-</div>
-
-<div class="checkpoint">
-  <h3>CHECKPOINT: ¿Puedes hacer esto?</h3>
-  <p>Te dan la tabla 2×2 → DiD. Te dan betas → reconstruir tabla. Te dan tabla → dar betas.</p>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="level level-yellow" id="L4">
-  <div class="tag">PRÁCTICA FINAL</div>
-  <h2>15 Preguntas Tipo Examen</h2>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q1</span>
-  <p class="question">¿Qué es el problema fundamental de la inferencia causal?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p>No puedes observar Y(1) y Y(0) para la misma persona. Solo ves un potential outcome. No puedes calcular τᵢ = Y(1)−Y(0) directamente.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q2</span>
-  <p class="question">SDO = 25, ATT = 18. ¿Selection bias?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <div class="math">SDO = ATT + SB → 25 = 18 + SB → <b>SB = 7</b></div>
-    <p>Positivo: los tratados eran mejores de base. SDO sobreestima por 7.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q3</span>
-  <p class="question">Bajo independence, ¿SDO = 0?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p><b>NO.</b> SDO = ATE (sin sesgo). El ATE puede ser cualquier número. Independence quita el sesgo, no el efecto.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q4</span>
-  <p class="question">Datos: E[Y|D=1]=90, E[Y|D=0]=80, E[Y(0)|D=1]=84, E[Y(0)|D=0]=80. Calcula SDO, ATT, SB.</p>
-  <details><summary>Ver respuesta</summary><div>
-    <div class="math">
-      SDO = 90 − 80 = <b>10</b><br>
-      ATT = 90 − 84 = <b>6</b><br>
-      SB = 84 − 80 = <b>4</b><br>
-      Check: 6 + 4 = 10 ✓
+    <div class="progress-bar"></div>
+
+    <nav>
+        <a href="#big-picture" class="nav-link">The Big Picture</a>
+        <a href="#part1" class="nav-link">Part 1: Rubin Model</a>
+        <a href="#part2" class="nav-link">Part 2: RCTs</a>
+        <a href="#part3" class="nav-link">Part 3: DiD</a>
+        <a href="#part4" class="nav-link">Part 4: Reading Tables</a>
+        <a href="#practice" class="nav-link">Practice Quiz</a>
+        <a href="#cheatsheet" class="nav-link">Cheat Sheet</a>
+    </nav>
+
+    <div class="container">
+        <!-- PART 0: THE BIG PICTURE -->
+        <section id="big-picture">
+            <div class="section-header part0">
+                <h2>PART 0: The Big Picture</h2>
+                <span class="section-tag">Foundation</span>
+            </div>
+
+            <div class="block intuition">
+                <h3>What is This Course About?</h3>
+                <p>Applied Econometrics II answers ONE fundamental question: <strong>Does X cause Y?</strong></p>
+                <p>In Spanish: <span class="es">¿Causa X a Y?</span></p>
+                <p>This is harder than it seems. Observing that Y goes up when X goes up does NOT prove causation. There could be:</p>
+                <ul>
+                    <li>Confounding variables (Z causes both X and Y)</li>
+                    <li>Reverse causality (Y causes X)</li>
+                    <li>Selection bias (people who choose X are different)</li>
+                </ul>
+            </div>
+
+            <div class="block formula">
+                <h3>The Fundamental Problem of Causal Inference</h3>
+                <p>For each unit (person, firm, etc.), there are TWO potential outcomes:</p>
+                <div class="formula-box">
+                    <span class="label">Y(1) = outcome if treated</span>
+                    <span class="label">Y(0) = outcome if not treated</span>
+                </div>
+                <p>The <strong>individual treatment effect</strong> is: <code>τᵢ = Y(1) - Y(0)</code></p>
+                <p>The problem: <strong>We can NEVER observe both Y(1) and Y(0) for the same unit.</strong> You either get the treatment or you don't. This is why we need causal inference methods.</p>
+                <p>In Spanish: <span class="es">No podemos ver ambos resultados potenciales para la misma persona.</span></p>
+            </div>
+
+            <div class="block formula">
+                <h3>The Switching Equation (CRITICAL)</h3>
+                <div class="formula-box">
+                    <span class="label">Yᵢ = Dᵢ·Y(1) + (1-Dᵢ)·Y(0)</span>
+                </div>
+                <p>Where:</p>
+                <ul>
+                    <li><strong>Yᵢ</strong> = observed outcome</li>
+                    <li><strong>Dᵢ</strong> = treatment indicator (1 if treated, 0 if control)</li>
+                    <li><strong>Y(1)</strong> = potential outcome if treated</li>
+                    <li><strong>Y(0)</strong> = potential outcome if not treated</li>
+                </ul>
+                <p>This just says: you observe Y(1) if you're treated, Y(0) if you're not.</p>
+            </div>
+
+            <div class="block trap">
+                <h3>TRAP: D=1 Does NOT Mean Y(0)=0</h3>
+                <p>Many students think: "If treatment is given (D=1), then Y(0) must be 0 or doesn't exist."</p>
+                <p><strong>WRONG!</strong> Y(0) is a <em>potential</em> outcome. It's the outcome that would have happened if that person had NOT been treated. It exists conceptually even if we never observe it.</p>
+                <p>Example: If a student takes tutoring (D=1), Y(0) is their grade IF they didn't take tutoring. This is real and meaningful, even though we never see it.</p>
+            </div>
+
+            <div class="block tip">
+                <h3>Why These Methods Matter for the Exam</h3>
+                <p>The quiz tests your ability to distinguish between:</p>
+                <ul>
+                    <li><strong>Observed differences</strong> (SDO): E[Y|D=1] - E[Y|D=0]</li>
+                    <li><strong>True causal effects</strong> (ATE, LATE): different ways of identifying τ</li>
+                    <li><strong>Selection bias</strong>: why observed ≠ causal</li>
+                </ul>
+                <p>Each method (RCT, DiD, IV) solves the fundamental problem in different ways.</p>
+            </div>
+        </section>
+
+        <!-- PART 1: RUBIN CAUSAL MODEL -->
+        <section id="part1">
+            <div class="section-header part1">
+                <h2>PART 1: The Rubin Causal Model</h2>
+                <span class="section-tag">Parameters & Assumptions</span>
+            </div>
+
+            <div class="block intuition">
+                <h3>What Are We Trying to Estimate?</h3>
+                <p>We want to measure the causal effect of treatment. But there are different "types" of effects, depending on whose effect we care about.</p>
+                <p>All depend on the question: <strong>Effect for whom?</strong></p>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #00d084; font-size: 1.2rem;">1A. CAUSAL PARAMETERS (What We Estimate)</h3>
+
+                <div class="block formula">
+                    <h3>Average Treatment Effect (ATE)</h3>
+                    <div class="formula-box">
+                        <span class="label">ATE = E[Y(1) - Y(0)]</span>
+                    </div>
+                    <p>The average effect <strong>for everyone</strong> in the population.</p>
+                    <p>In Spanish: <span class="es">El efecto promedio para toda la población</span></p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Average Treatment Effect on the Treated (ATT)</h3>
+                    <div class="formula-box">
+                        <span class="label">ATT = E[Y(1) - Y(0) | D=1]</span>
+                    </div>
+                    <p>The average effect <strong>only for people who actually got treated.</strong></p>
+                    <p>This matters because people who self-select into treatment might be different.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Average Treatment Effect on the Untreated (ATU)</h3>
+                    <div class="formula-box">
+                        <span class="label">ATU = E[Y(1) - Y(0) | D=0]</span>
+                    </div>
+                    <p>The average effect <strong>for people who didn't get treated.</strong></p>
+                    <p>This is often different from ATT, especially if treatment effects are heterogeneous.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Relationship Between ATE, ATT, and ATU</h3>
+                    <div class="formula-box">
+                        <span class="label">ATE = p·ATT + (1-p)·ATU</span>
+                    </div>
+                    <p>Where <strong>p = P(D=1)</strong> = share of population treated.</p>
+                    <p>This is just a weighted average. If treatment is given to everyone, p=1 so ATE=ATT. If given to half, then ATE is the average of ATT and ATU.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #00d084; font-size: 1.2rem;">1B. OBSERVED vs CAUSAL: The SDO Decomposition (CRITICAL)</h3>
+
+                <div class="block formula">
+                    <h3>Simple Difference in Outcomes (SDO)</h3>
+                    <div class="formula-box">
+                        <span class="label">SDO = E[Y | D=1] - E[Y | D=0]</span>
+                    </div>
+                    <p>This is what you see in the data: average outcome for treated minus average for control.</p>
+                    <p>In Spanish: <span class="es">La diferencia simple observada en los datos</span></p>
+                </div>
+
+                <div class="block intuition">
+                    <h3>The Problem with SDO</h3>
+                    <p>SDO includes BOTH:</p>
+                    <ul>
+                        <li>The true causal effect (what we want)</li>
+                        <li>Selection bias (differences between treated and control groups)</li>
+                    </ul>
+                    <p>So: <strong>SDO ≠ ATE</strong> unless there's no selection bias.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>SDO Decomposition: Version 1</h3>
+                    <div class="formula-box">
+                        <span class="label">SDO = ATT + Selection Bias</span>
+                        <span class="label">where Selection Bias = E[Y(0)|D=1] - E[Y(0)|D=0]</span>
+                    </div>
+                    <p>Selection Bias tells you: <strong>How much would the treated group's outcome have differed from the control group, even without treatment?</strong></p>
+                    <p>This captures differences in Y(0) between groups.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>Worked Example from PS1 (Non-Random Case)</h3>
+                    <p><strong>Data:</strong> Some people self-selected into treatment, some didn't.</p>
+                    <ul>
+                        <li>SDO = 10.22</li>
+                        <li>ATT = 10.27</li>
+                        <li>ATU = 5.49</li>
+                        <li>Selection Bias = -0.051</li>
+                    </ul>
+                    <p><strong>Interpretation:</strong> The treated group's observed outcome was 10.22 higher than control. But ATT is only 10.27, which is very close! This is because Selection Bias ≈ 0 (despite non-random selection). The treated group would have been only 0.051 higher even without treatment, so most of the SDO is real causal effect.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>Worked Example from PS1 (Random Case)</h3>
+                    <p><strong>Data:</strong> Treatment was randomly assigned.</p>
+                    <ul>
+                        <li>SDO = 8.16</li>
+                        <li>ATE = 7.88</li>
+                        <li>ATT = 8.16</li>
+                        <li>ATU = 7.60</li>
+                        <li>Selection Bias = -0.006</li>
+                    </ul>
+                    <p><strong>Interpretation:</strong> Randomization makes SB ≈ 0 (barely perceptible -0.006). This is much better than the non-random case. With randomization, SDO ≈ ATE (8.16 vs 7.88), and ATT ≈ ATU, showing no heterogeneity.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>SDO Decomposition: Version 2 (Heterogeneous Treatment Effects)</h3>
+                    <div class="formula-box">
+                        <span class="label">SDO = ATE + SB + (1-p)·(ATT - ATU)</span>
+                    </div>
+                    <p>This breaks SDO into three parts:</p>
+                    <ul>
+                        <li><strong>ATE:</strong> the true average effect</li>
+                        <li><strong>Selection Bias (SB):</strong> composition differences</li>
+                        <li><strong>Heterogeneous Treatment Effect (HTE) bias:</strong> (1-p)·(ATT-ATU), which arises if treatment effects differ between treated and untreated</li>
+                    </ul>
+                    <p>In the examples above: from PS1, HTE = (ATT - ATU) = 10.27 - 5.49 = 4.78 in non-random case, 0.56 in random case.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Key Insight: Why Randomization Helps</h3>
+                    <p>Randomization solves the problem by making:</p>
+                    <ul>
+                        <li>Selection Bias ≈ 0 (groups are balanced on Y(0))</li>
+                        <li>HTE bias ≈ 0 (no reason for effect to differ by D)</li>
+                    </ul>
+                    <p>So: <strong>With randomization, SDO ≈ ATE.</strong></p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #00d084; font-size: 1.2rem;">1C. Independence Assumption</h3>
+
+                <div class="block formula">
+                    <h3>The Independence Assumption</h3>
+                    <div class="formula-box">
+                        <span class="label">(Y(1), Y(0)) ⊥⊥ D</span>
+                    </div>
+                    <p>This says: <strong>Treatment assignment is independent of potential outcomes.</strong></p>
+                    <p>In plain English: whether you get treated or not is uncorrelated with how you would respond to treatment.</p>
+                </div>
+
+                <div class="block intuition">
+                    <h3>What Independence Means for SDO and ATE</h3>
+                    <p>If independence holds:</p>
+                    <div class="formula-box">
+                        <span class="label">E[Y(0)|D=1] = E[Y(0)|D=0]</span>
+                        <span class="label">→ Selection Bias = 0</span>
+                        <span class="label">→ SDO = ATE</span>
+                    </div>
+                    <p>This is because: if treatment is independent of potential outcomes, the treated group's counterfactual (Y(0)) should be the same as the control group's Y(0).</p>
+                </div>
+
+                <div class="block trap">
+                    <h3>TRAP: Independence ≠ No Effect</h3>
+                    <p>Independence does NOT mean SDO = 0 or ATE = 0. It means SDO = ATE (unbiased estimate).</p>
+                    <p>Example: If ATE = 5, then SDO = 5 (not 0). The effect is real; it's just correctly estimated.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>How to Achieve Independence</h3>
+                    <p><strong>Randomization</strong> is the gold standard. When you randomly assign treatment, it becomes independent of potential outcomes by design.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #00d084; font-size: 1.2rem;">1D. SUTVA (Stable Unit Treatment Value Assumption)</h3>
+
+                <div class="block formula">
+                    <h3>SUTVA Requirements</h3>
+                    <p>Two parts:</p>
+                    <ol>
+                        <li><strong>No interference:</strong> One person's treatment doesn't affect another person's outcome</li>
+                        <li><strong>Single version of treatment:</strong> Treatment means the same thing for everyone</li>
+                    </ol>
+                </div>
+
+                <div class="block example">
+                    <h3>SUTVA Violations</h3>
+                    <ul>
+                        <li><strong>Vaccines:</strong> If one person gets vaccinated, it protects others (herd immunity). SUTVA violated.</li>
+                        <li><strong>Job training:</strong> If some people get training, wages might fall for others (labor market effects). SUTVA violated.</li>
+                        <li><strong>Classroom size:</strong> If one class is smaller, does it affect learning in other classes? If yes, SUTVA violated.</li>
+                        <li><strong>Drug dosage variation:</strong> If "treatment" means 5mg for some and 10mg for others, single version violated.</li>
+                    </ul>
+                </div>
+
+                <div class="block tip">
+                    <h3>What Happens If SUTVA Is Violated?</h3>
+                    <p>Your causal effect estimates become unreliable. You might estimate the effect of the direct treatment, but miss spillovers to other units.</p>
+                    <p>Later in Part 3, we'll cover saturation designs that handle interference.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #00d084; font-size: 1.2rem;">1E. Selection Bias Direction: How to Reason Through It</h3>
+
+                <div class="block intuition">
+                    <h3>The Key Question: Why Do People Self-Select?</h3>
+                    <p>In observational data, selection bias arises because people choose treatment based on how much they'll benefit.</p>
+                    <p>From PS1 Q3d: Ask yourself—are treated people inherently higher-Y or lower-Y than controls?</p>
+                </div>
+
+                <div class="block example">
+                    <h3>Worked Example: College Education and Earnings</h3>
+                    <p><strong>SDO:</strong> College grads earn $15k more than non-grads.</p>
+                    <p><strong>But:</strong> Smarter/more motivated people self-select into college. They'd earn more anyway (higher Y(0)).</p>
+                    <p><strong>So:</strong> SB > 0 (treated have higher Y(0)).</p>
+                    <p><strong>Conclusion:</strong> SDO overestimates ATE. True effect is less than $15k.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>Counter-Example: Job Training for Unemployed</h3>
+                    <p><strong>SDO:</strong> Job training participants earn $5k more 2 years later than non-participants.</p>
+                    <p><strong>But:</strong> People self-select into training because they're struggling (lower Y(0)).</p>
+                    <p><strong>So:</strong> SB < 0 (treated have lower Y(0)).</p>
+                    <p><strong>Conclusion:</strong> SDO underestimates ATE. True effect is more than $5k.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>How to Answer Selection Bias Direction Questions</h3>
+                    <p><strong>Step 1:</strong> Ask: Why would people choose treatment?</p>
+                    <p><strong>Step 2:</strong> If people with higher Y(0) self-select → SB > 0 → SDO overestimates</p>
+                    <p><strong>Step 3:</strong> If people with lower Y(0) self-select → SB < 0 → SDO underestimates</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 2: RANDOMIZED EXPERIMENTS -->
+        <section id="part2">
+            <div class="section-header part2">
+                <h2>PART 2: Randomized Experiments (RCTs)</h2>
+                <span class="section-tag">Design & Analysis</span>
+            </div>
+
+            <div class="block intuition">
+                <h3>Why RCTs Are the Gold Standard</h3>
+                <p>Randomization forces Independence: (Y(1), Y(0)) ⊥⊥ D. This means:</p>
+                <ul>
+                    <li>Selection Bias = 0</li>
+                    <li>SDO = ATE (unbiased estimate of the true causal effect)</li>
+                    <li>No confounding</li>
+                </ul>
+                <p>RCTs are the most credible causal inference method.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2A. Basic RCT Regression Specification</h3>
+
+                <div class="block formula">
+                    <h3>Simplest RCT Regression</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢ = β₀ + β₁·Treatᵢ + εᵢ</span>
+                    </div>
+                    <p><strong>Under randomization:</strong> β̂₁ = ATE (unbiased)</p>
+                    <p>β₀ = E[Y|D=0] = control group mean</p>
+                    <p>β₀ + β₁ = E[Y|D=1] = treated group mean</p>
+                </div>
+
+                <div class="block example">
+                    <h3>With Multiple Follow-Up Periods</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢₜ = β₀ + Σ βₜ·Treatᵢ·Tᵢₘₑₜ + λₜ + εᵢₜ</span>
+                    </div>
+                    <p>This allows treatment effects to vary over time.</p>
+                    <p>Each βₜ estimates ATE in period t after treatment.</p>
+                    <p>λₜ are time fixed effects (capture common trends).</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Adding Controls (Pre-Treatment Variables)</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢ = β₀ + β₁·Treatᵢ + Xᵢ'γ + εᵢ</span>
+                    </div>
+                    <p>Where X = pre-treatment characteristics (measured before randomization).</p>
+                    <p><strong>Why add controls?</strong> Reduces Var(εᵢ) → smaller SE → more power.</p>
+                    <p><strong>Key:</strong> Must be measured BEFORE treatment. Post-treatment variables are "bad controls" (they might be affected by treatment).</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>ANCOVA (Analysis of Covariance)</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢ = β₀ + β₁·Treatᵢ + Y₀ᵢ'γ + εᵢ</span>
+                    </div>
+                    <p>Control for baseline outcome Y₀ᵢ (outcome measured before treatment).</p>
+                    <p>Very powerful: controls for unit-specific factors that predict outcomes.</p>
+                    <p>Reduces noise, increases precision of β̂₁.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Stratified Design (from class notes)</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢ = β₀ + β₁·Treatᵢ + Sₛ + εᵢ</span>
+                    </div>
+                    <p>Sₛ = strata fixed effects (one for each pre-defined group).</p>
+                    <p>Ensures treatment is balanced within each stratum, not just overall.</p>
+                    <p><strong>When to use:</strong> Expect heterogeneous effects across strata.</p>
+                </div>
+
+                <div class="block trap">
+                    <h3>TRAP: Bad Controls in RCTs</h3>
+                    <p><strong>Bad controls = variables measured AFTER treatment</strong> that might be affected by treatment.</p>
+                    <p>Example: If treatment is tutoring, don't control for "study hours" if tutoring changes study behavior.</p>
+                    <p><strong>Why?</strong> You'd be controlling away part of the treatment effect!</p>
+                    <p>From PS1: "wellbeing" measured post-treatment is a bad control.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2B. Why Include Controls in RCT?</h3>
+
+                <div class="quick-ref">
+                    <h4>The Precision Argument</h4>
+                    <p>Controls reduce Var(εᵢ) → SE(β̂₁) is smaller → can detect smaller effects → more power.</p>
+                    <p>But: randomization ensures unbiased β̂₁ even without controls.</p>
+                    <p><strong>Pre-specification:</strong> Should plan which controls to use before analyzing data (AEA registry).</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>PDS/Lasso for Variable Selection</h3>
+                    <p>If you have many possible controls, you can use data-driven methods (like Lasso) to select which ones to include.</p>
+                    <p>Modern best practice: pre-specify a few strong controls, then report robustness to Lasso selection.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2C. Stratification</h3>
+
+                <div class="block intuition">
+                    <h3>Without Stratification</h3>
+                    <p>Random assignment is balanced <strong>in expectation</strong>, but in any given sample, you might get imbalance by chance.</p>
+                    <p>Example: Want 50% treatment, but get 52% by random chance.</p>
+                </div>
+
+                <div class="block intuition">
+                    <h3>With Stratification</h3>
+                    <p>You ensure balance <strong>in practice</strong> by assigning treatment separately within pre-defined groups (strata).</p>
+                    <p>Example: Stratify by gender, then randomly assign 50% within each gender. Guarantees 50% treated overall.</p>
+                    <p><strong>Benefit:</strong> Improves power, especially if stratification variable predicts outcomes.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Stratification Strategy (from notes)</h3>
+                    <p><strong>Who to stratify by?</strong> Variables where you expect heterogeneous treatment effects.</p>
+                    <p><strong>How many strata?</strong> As many as feasible, up to 2×(number of treatment arms).</p>
+                    <p>Example: 2 treatment arms, can safely stratify by ≤4 groups.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2D. Internal vs External Validity</h3>
+
+                <div class="comparison-grid">
+                    <div class="comparison-cell">
+                        <h4>Internal Validity</h4>
+                        <p>Can the estimate be interpreted as <strong>causal</strong> within this study?</p>
+                        <p>RCTs have high internal validity because randomization eliminates confounding.</p>
+                    </div>
+                    <div class="comparison-cell">
+                        <h4>External Validity</h4>
+                        <p>Does the effect <strong>generalize</strong> to other populations/settings?</p>
+                        <p>RCTs may have lower external validity if sample is selective (e.g., volunteers).</p>
+                    </div>
+                </div>
+
+                <div class="block tip">
+                    <h3>For the Exam</h3>
+                    <p>You might be asked: "This RCT is internally valid. Is it externally valid?" Answer: Probably not—depends on whether the sample represents the target population.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2E-F. NON-COMPLIANCE AND LATE (CRITICAL FOR EXAM)</h3>
+
+                <div class="block intuition">
+                    <h3>The Non-Compliance Problem</h3>
+                    <p>In real experiments, not everyone assigned to treatment takes it. Not everyone in control stays untreated.</p>
+                    <p>Example: Randomize job training. Some assigned don't attend. Some in control seek training elsewhere.</p>
+                    <p>This complicates causal inference.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Key Notation</h3>
+                    <div class="formula-box">
+                        <span class="label">Z = assignment (exogenous, random)</span>
+                        <span class="label">D = actual treatment received (endogenous, may depend on Z and unobservables)</span>
+                    </div>
+                    <p>We control Z (assignment), but D (compliance) is partly out of our control.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>The Four Types of Compliance Behavior</h3>
+                    <div class="formula-box">
+                        <span class="label">Compliers: D = 1 if Z = 1, D = 0 if Z = 0 (follow assignment)</span>
+                        <span class="label">Always-Takers: D = 1 regardless of Z</span>
+                        <span class="label">Never-Takers: D = 0 regardless of Z</span>
+                        <span class="label">Defiers: D = 0 if Z = 1, D = 1 if Z = 0 (do opposite)</span>
+                    </div>
+                </div>
+
+                <div class="block example">
+                    <h3>Calculating Compliance Types (from PS1 Q2)</h3>
+                    <p><strong>Data:</strong></p>
+                    <ul>
+                        <li>65% assigned treatment (Z=1), 35% control (Z=0)</li>
+                        <li>77.54% of Z=1 participated (D=1|Z=1 = 0.7754)</li>
+                        <li>6% of Z=0 participated (D=1|Z=0 = 0.06)</li>
+                    </ul>
+                    <p><strong>Calculations:</strong></p>
+                    <div class="formula-box">
+                        <span class="label">Always-Takers = P(D=1|Z=0) = 6%</span>
+                        <span class="label">Never-Takers = 1 - P(D=1|Z=1) = 1 - 0.7754 = 22.46%</span>
+                        <span class="label">Compliers = P(D=1|Z=1) - P(D=1|Z=0) = 0.7754 - 0.06 = 0.7154 (71.54%)</span>
+                    </div>
+                    <p><strong>Check:</strong> Always + Never + Compliers = 6% + 22.46% + 71.54% = 100%. ✓</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>ITT (Intention-to-Treat)</h3>
+                    <div class="formula-box">
+                        <span class="label">ITT = E[Y | Z=1] - E[Y | Z=0]</span>
+                    </div>
+                    <p><strong>Key:</strong> Uses Z (assignment), not D (actual treatment).</p>
+                    <p>ITT is the effect of <strong>being assigned</strong> to treatment, whether or not you comply.</p>
+                    <p>ITT ≤ ATE because not everyone complies.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>First Stage</h3>
+                    <div class="formula-box">
+                        <span class="label">First Stage = P(D=1|Z=1) - P(D=1|Z=0) = share of compliers</span>
+                    </div>
+                    <p>In the PS1 example: 0.7754 - 0.06 = 0.7154 = 71.54%</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>LATE (Local Average Treatment Effect)</h3>
+                    <div class="formula-box">
+                        <span class="label">LATE = ITT / First Stage</span>
+                    </div>
+                    <p>LATE is the effect of treatment <strong>for compliers only.</strong></p>
+                    <p>From PS1 Q2i: ITT = -1.1457, First Stage = 0.7154, LATE = -1.1457 / 0.7154 = -1.6015</p>
+                </div>
+
+                <div class="block intuition">
+                    <h3>Why |LATE| ≥ |ITT|?</h3>
+                    <p>LATE divides ITT by First Stage, which is &lt; 1 (unless compliance is 100%).</p>
+                    <p>So LATE is always larger in absolute value than ITT.</p>
+                    <p><strong>Intuition:</strong> If only 71.54% comply, then to get the effect for those 71.54%, we must divide by 0.7154 to "undo" the dilution.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>From PS1 Q2j: Why |LATE| > |ITT|?</h3>
+                    <p><strong>Answer:</strong> ITT includes all people assigned to treatment, many of whom didn't participate. LATE adjusts for non-compliance to estimate the effect for compliers only. Since many assigned didn't comply, we divide by a smaller fraction, making LATE larger.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>When to Use ITT vs LATE</h3>
+                    <p><strong>ITT:</strong> Use if you want the policy effect (effect of offering treatment, whether people take it or not).</p>
+                    <p><strong>LATE:</strong> Use if you want the treatment effect for those who actually take it.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2G. Four LATE Assumptions (CRITICAL)</h3>
+
+                <div class="block formula">
+                    <h3>Assumption 1: Independence</h3>
+                    <div class="formula-box">
+                        <span class="label">Z ⊥⊥ (Y, D potentials)</span>
+                    </div>
+                    <p>Assignment is random. Holds by design in RCTs.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Assumption 2: Exclusion Restriction</h3>
+                    <div class="formula-box">
+                        <span class="label">Z → Y only through D</span>
+                    </div>
+                    <p>Assignment affects outcomes <strong>only</strong> through actual treatment, not through other channels.</p>
+                    <p>Example violation: If Z = job training offered, and showing up (D) signals motivation, then Z might affect outcomes through motivation independent of training. Bad.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Assumption 3: First Stage (Relevance)</h3>
+                    <div class="formula-box">
+                        <span class="label">P(D=1|Z=1) ≠ P(D=1|Z=0)</span>
+                    </div>
+                    <p>Assignment must actually affect whether people take treatment. If this doesn't hold, Z can't be used as an instrument.</p>
+                    <p>In all real experiments with compliance, this holds.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Assumption 4: Monotonicity</h3>
+                    <div class="formula-box">
+                        <span class="label">No defiers: D(Z=1) ≥ D(Z=0) for all individuals</span>
+                    </div>
+                    <p>People assigned to treatment don't actively avoid it (relative to being assigned control).</p>
+                    <p>Usually reasonable assumption in practice.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>For Exam: Critiquing LATE</h3>
+                    <p>You might be asked: "Can we use this as an instrument?" Check all four assumptions. If one is violated (especially exclusion), LATE is biased.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2H. Adding Controls with LATE (from PS1 Q2k)</h3>
+
+                <div class="block intuition">
+                    <h3>The Complication</h3>
+                    <p>When calculating LATE with controls, you need to be careful about what counts as a "bad control."</p>
+                    <p>From PS1 Q2k: Don't include "wellbeing" as control because measured post-treatment.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Correct LATE with Controls</h3>
+                    <p>When using 2SLS with controls:</p>
+                    <div class="formula-box">
+                        <span class="label">First Stage: D = π₀ + π₁·Z + X'φ + ν</span>
+                        <span class="label">Second Stage: Y = β₀ + β₁·D̂ + X'γ + ε</span>
+                    </div>
+                    <p>Include the same X in both stages.</p>
+                    <p><strong>Key:</strong> X must be pre-treatment variables that predict outcomes.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2I. Balance Checks</h3>
+
+                <div class="block intuition">
+                    <h3>What Are Balance Checks?</h3>
+                    <p>Verify that randomization was successful by checking if treatment and control groups are similar on pre-treatment characteristics.</p>
+                    <p>Example: Is age distributed similarly in treatment vs control?</p>
+                </div>
+
+                <div class="block example">
+                    <h3>From PS1 Q3e</h3>
+                    <p>Create a balance table showing mean of each pre-treatment variable by treatment status. If means are close, randomization worked.</p>
+                    <p><strong>Formal test:</strong> t-test for each variable: H₀: mean(X|D=1) = mean(X|D=0)</p>
+                    <p><strong>Expect:</strong> Only ~5% of variables significantly different at p&lt;0.05 (by chance).</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Exam Tip</h3>
+                    <p>If asked about balance: "Check pre-treatment variables between groups. If similar, randomization worked and SDO = ATE."</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2J. Randomization Inference</h3>
+
+                <div class="block intuition">
+                    <h3>What Is It?</h3>
+                    <p>An alternative to asymptotic inference (t-tests). Use permutations of treatment assignment to build the distribution of the test statistic under the null.</p>
+                    <p>More reliable with small samples.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Fisher's Sharp Null</h3>
+                    <div class="formula-box">
+                        <span class="label">H₀: τᵢ = 0 for ALL i (not just on average)</span>
+                    </div>
+                    <p>This is stronger than "E[τ] = 0"—it says the treatment has zero effect for every single person.</p>
+                </div>
+
+                <div class="block intuition">
+                    <h3>Procedure</h3>
+                    <ol>
+                        <li>Calculate observed test statistic (e.g., difference in means)</li>
+                        <li>Permute treatment assignment R times (e.g., R=10,000)</li>
+                        <li>Calculate test statistic for each permutation</li>
+                        <li>p-value = share of permutations with stat ≥ observed</li>
+                    </ol>
+                </div>
+
+                <div class="block example">
+                    <h3>From PS1</h3>
+                    <p>10,000 permutations, p-value = 0 (observed effect more extreme than all permutations).</p>
+                    <p><strong>Conclusion:</strong> Strong evidence against Fisher's null (effect is real and nonzero).</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2K. Spillovers & Saturation Design</h3>
+
+                <div class="block intuition">
+                    <h3>The Problem: SUTVA Violations</h3>
+                    <p>If one person's treatment affects another person's outcome (spillovers), SUTVA is violated and standard estimates are biased.</p>
+                    <p>Example: If some people get bednet training, those nearby benefit from reduced malaria. If some get treated and some nearby don't, we mix direct and spillover effects.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Saturation Design (Solution)</h3>
+                    <p>Randomize <strong>groups</strong> (villages, neighborhoods) instead of individuals.</p>
+                    <p>Three treatment arms:</p>
+                    <div class="formula-box">
+                        <span class="label">High Saturation (80% treated)</span>
+                        <span class="label">Low Saturation (20% treated)</span>
+                        <span class="label">Control (0% treated)</span>
+                    </div>
+                </div>
+
+                <div class="block formula">
+                    <h3>Regression with Saturation Design</h3>
+                    <div class="formula-box">
+                        <span class="label">Y = β₀ + β₁·Treat_High + β₂·Treat_Low + β₃·Control_High + β₄·Control_Low + ε</span>
+                    </div>
+                    <p>β₁ = Direct effect of treatment + spillover in high saturation</p>
+                    <p>β₂ = Direct effect of treatment + spillover in low saturation</p>
+                    <p>β₃ = Spillover effect on controls in high saturation (everyone else treated)</p>
+                    <p>β₄ = Spillover effect on controls in low saturation (few others treated)</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Interpreting Saturation Results</h3>
+                    <p>If β₁ ≠ β₂: spillovers are present (effect differs by saturation).</p>
+                    <p>If β₃ ≠ 0: spillovers exist even to untreated in treated areas.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #0099ff; font-size: 1.2rem;">2L. Multiple Treatment Arms & Factorial Designs</h3>
+
+                <div class="block formula">
+                    <h3>3-Arm Design (Two Treatments)</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢ = β₀ + β₁·Treat1ᵢ + β₂·Treat2ᵢ + εᵢ</span>
+                    </div>
+                    <p>β₁ = ATE of Treatment 1 vs control</p>
+                    <p>β₂ = ATE of Treatment 2 vs control</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Comparing Two Treatments</h3>
+                    <div class="formula-box">
+                        <span class="label">H₀: β₁ = β₂ (treatment effects are equal)</span>
+                        <span class="label">Test: t-stat = (β̂₁ - β̂₂) / SE(β̂₁ - β̂₂)</span>
+                    </div>
+                </div>
+
+                <div class="block formula">
+                    <h3>2×2 Factorial Design (Two Binary Treatments)</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢ = β₀ + β₁·T¹ᵢ + β₂·T²ᵢ + β₃·(T¹ᵢ · T²ᵢ) + εᵢ</span>
+                    </div>
+                    <p>β₁ = Main effect of Treatment 1 (holding Treatment 2 at 0)</p>
+                    <p>β₂ = Main effect of Treatment 2 (holding Treatment 1 at 0)</p>
+                    <p>β₃ = Interaction (additional effect when both given together)</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Exam Question Example</h3>
+                    <p>You might see: "Test if treatment 1 and treatment 2 have the same effect." Use comparison in formula above.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 3: DIFFERENCE-IN-DIFFERENCES -->
+        <section id="part3">
+            <div class="section-header part3">
+                <h2>PART 3: Difference-in-Differences (DiD)</h2>
+                <span class="section-tag">Observable Designs</span>
+            </div>
+
+            <div class="block intuition">
+                <h3>Why DiD When We Can't Randomize?</h3>
+                <p>Often randomization is impossible (policy is mandatory, already implemented, etc.). DiD exploits natural experiments: some units get treated, others don't, and we observe both before and after.</p>
+                <p>Key insight: Parallel trends assumption replaces randomization.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3A. Basic DiD Setup and Decomposition</h3>
+
+                <div class="block formula">
+                    <h3>The 2×2 Table</h3>
+                    <table>
+                        <tr>
+                            <th>Group</th>
+                            <th>Pre-Policy</th>
+                            <th>Post-Policy</th>
+                            <th>Change</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Control</strong></td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>D - C</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Treated</strong></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>B - A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diff-in-Diff</strong></td>
+                            <td>A - C</td>
+                            <td>B - D</td>
+                            <td><strong>(B - A) - (D - C)</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="block formula">
+                    <h3>Regression Specification</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢₜ = β₀ + β₁·Dᵢ + β₂·Postₜ + β₃·(Dᵢ × Postₜ) + εᵢₜ</span>
+                    </div>
+                    <p><strong>Interpretation:</strong></p>
+                    <ul>
+                        <li>β₀ = C (control, pre-policy mean)</li>
+                        <li>β₁ = A - C (treatment group baseline difference)</li>
+                        <li>β₂ = D - C (post-policy change in control group)</li>
+                        <li>β₃ = DiD = (B - A) - (D - C) = causal effect (THE coefficient of interest)</li>
+                    </ul>
+                </div>
+
+                <div class="block tip">
+                    <h3>Key Insight</h3>
+                    <p>β₃ is the <strong>ATT</strong> (effect for treated group). It's identified by comparing the trend in the treated group to the trend in the control group.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3B. Worked Example from PS2 Q2d (CRITICAL)</h3>
+
+                <div class="block example">
+                    <h3>Air Pollution Policy and Accidents</h3>
+                    <p><strong>Setup:</strong> Government implemented air pollution policy in some provinces but not others. Question: Did the policy reduce traffic accidents?</p>
+                    <p><strong>Data:</strong> Monthly accident counts, before and after policy implementation.</p>
+                    <div class="formula-box">
+                        <span class="label">Accidentsᵢₜ = β₀ + β₁·Treatmentᵢ + β₂·Postₜ + β₃·(Treatmentᵢ × Postₜ) + εᵢₜ</span>
+                    </div>
+                </div>
+
+                <div class="block example">
+                    <h3>Results from PS2 Q2d</h3>
+                    <ul>
+                        <li>β̂₀ = 67.33: Mean accidents in Control group, pre-policy</li>
+                        <li>β̂₁ = 17.52: Treatment group had 17.52 MORE accidents pre-policy (bad luck, not causality)</li>
+                        <li>β̂₂ = -2.54: Post-policy, control group had 2.54 fewer accidents (common trend)</li>
+                        <li>β̂₃ = -5.34: DiD effect! Treatment group had 5.34 FEWER accidents due to policy</li>
+                    </ul>
+                    <p><strong>Calculation check:</strong></p>
+                    <ul>
+                        <li>Control, pre: 67.33</li>
+                        <li>Control, post: 67.33 - 2.54 = 64.79</li>
+                        <li>Treated, pre: 67.33 + 17.52 = 84.85</li>
+                        <li>Treated, post: 67.33 + 17.52 - 2.54 - 5.34 = 76.97</li>
+                    </ul>
+                    <p>DiD = (84.85 - 76.97) - (67.33 - 64.79) = 7.88 - 2.54 = 5.34 ✓</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Interpretation</h3>
+                    <p><strong>Bottom line:</strong> The policy reduced accidents by 5.34 per 100,000 per month in treated provinces.</p>
+                    <p><strong>Important:</strong> This is ATT, not ATE. Provinces that implemented policy may differ from those that didn't. If extending policy to other provinces, ATT might not equal ATE.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Clustering Standard Errors</h3>
+                    <p>From PS2: Cluster SE at province level (the treatment level). This accounts for correlation of errors within provinces over time.</p>
+                    <p><strong>Why?</strong> If accidents in one month for a province correlate with next month, regular SE is too small.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3C. Two-Way Fixed Effects (TWFE) Specification</h3>
+
+                <div class="block formula">
+                    <h3>TWFE with Unit and Time FE</h3>
+                    <div class="formula-box">
+                        <span class="label">Accidentsᵢₜ = β₀ + β₁·(Treatmentᵢ × Postₜ) + λᵢ + αₜ + εᵢₜ</span>
+                    </div>
+                    <p><strong>λᵢ</strong> = unit (province) fixed effects. Absorb all time-invariant differences between units.</p>
+                    <p><strong>αₜ</strong> = time fixed effects. Absorb all common time shocks.</p>
+                </div>
+
+                <div class="block intuition">
+                    <h3>Why Use TWFE?</h3>
+                    <p>Eliminates need to include Treatmentᵢ standalone (absorbed by λᵢ) and Postₜ standalone (absorbed by αₜ).</p>
+                    <p>β̂₁ = DiD effect (same as 2×2 case), but estimated more flexibly.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>From PS2 Q2e</h3>
+                    <p><strong>Results:</strong> β̂₁ = -5.34 (same as simple DiD).</p>
+                    <p><strong>Why?</strong> With just two time periods (pre and post), TWFE reduces to simple DiD.</p>
+                    <p><strong>With more periods:</strong> TWFE allows flexible time effects, which is more general.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>ATT Interpretation</h3>
+                    <p>β̂₁ is still ATT. It's the effect on treated units relative to what they would have experienced following the control group's trend.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3D. Why Variables Don't Appear Standalone When Fixed Effects Included</h3>
+
+                <div class="block example">
+                    <h3>From PS2 Q3a</h3>
+                    <p><strong>Question:</strong> Why don't we include Electᵢₜ (election indicator) standalone when there are year fixed effects?</p>
+                    <p><strong>Answer:</strong> Because Electᵢₜ only varies by year (same value for all units in a given year). Year FE (αₜ) perfectly absorb this variation. Including both would be collinear.</p>
+                    <p><strong>Same for Treatmentᵢ standalone:</strong> Only varies by unit. Absorbed by unit FE (λᵢ).</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Rule of Thumb</h3>
+                    <p>Don't include a variable standalone if it's already perfectly absorbed by your fixed effects. The regressor must vary within treatment/time cell.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3E. PARALLEL TRENDS ASSUMPTION (THE KEY ASSUMPTION)</h3>
+
+                <div class="highlight">
+                    <strong>Parallel Trends:</strong> Absent treatment, the treated and control groups would have followed the same trend over time.
+                </div>
+
+                <div class="block intuition">
+                    <h3>Why Is This Crucial?</h3>
+                    <p>DiD uses the control group's trend as the counterfactual for the treated group. If trends differ for reasons unrelated to treatment, this breaks down.</p>
+                    <p>Example: If treated province has economic growth independent of policy, its outcome would rise faster anyway. DiD would confound growth with policy effect.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>What Parallel Trends Means Mathematically</h3>
+                    <p><strong>Untreated Trend:</strong> E[Y(0)ᵢₜ₊₁ - Y(0)ᵢₜ | Dᵢ=1] = E[Y(0)ᵢₜ₊₁ - Y(0)ᵢₜ | Dᵢ=0]</p>
+                    <p>Without treatment, treated group would grow at same rate as controls.</p>
+                </div>
+
+                <div class="block trap">
+                    <h3>TRAP: Parallel Trends ≠ Parallel Levels</h3>
+                    <p>Groups CAN have different starting levels. β₁ ≠ 0 is fine.</p>
+                    <p>Parallel trends only requires that changes are the same, not that levels are.</p>
+                </div>
+
+                <div class="block trap">
+                    <h3>TRAP: Pre-Trends ≈ 0 ≠ Parallel Trends Hold</h3>
+                    <p>If both groups show zero trend pre-treatment, that's nice but doesn't prove parallel trends.</p>
+                    <p>You need E[Y|Treat,Pre] to grow at same rate as E[Y|Control,Pre].</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Testing Parallel Trends (Pre-Treatment Only)</h3>
+                    <p>You CAN test pre-treatment trends. If they're similar pre-treatment, it's suggestive evidence for parallel trends post-treatment.</p>
+                    <p>Cannot test post-treatment (because treatment affects it!), so must assume it holds.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3F. Testing Parallel Pre-Trends</h3>
+
+                <div class="block example">
+                    <h3>Visual Inspection (from PS2)</h3>
+                    <p>Plot E[Y|Treat,t] and E[Y|Control,t] for each time period before treatment.</p>
+                    <p>If lines are parallel, parallel trends assumption seems reasonable.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Formal F-Test</h3>
+                    <div class="formula-box">
+                        <span class="label">H₀: β₁ = β₂ = ... = βₖ = 0 (all pre-treatment coefficients = 0)</span>
+                        <span class="label">H_A: at least one pre-treatment β ≠ 0</span>
+                    </div>
+                    <p>If you can't reject H₀, no evidence against parallel pre-trends.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>From PS2 Q2g</h3>
+                    <p><strong>Data:</strong> F-test p-value = 0.7818 for pre-treatment coefficients.</p>
+                    <p><strong>Interpretation:</strong> Fail to reject H₀. No statistical evidence against parallel pre-trends.</p>
+                    <p><strong>Conclusion:</strong> Treated and control groups trended similarly before treatment. Good sign that parallel trends holds post-treatment.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Exam Tip</h3>
+                    <p>If asked "Does parallel trends hold?": Say "We cannot test post-treatment directly, but pre-treatment trends are [similar/different]. This is [weak/strong] suggestive evidence."</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3G. EVENT STUDY SPECIFICATION (CRITICAL)</h3>
+
+                <div class="block intuition">
+                    <h3>What Is an Event Study?</h3>
+                    <p>Instead of assuming treatment effects are constant over time, estimate separate effects for each period relative to treatment.</p>
+                    <p>Shows whether effects are immediate, fade, grow, etc.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Event Study Regression (from PS2)</h3>
+                    <div class="formula-box">
+                        <span class="label">Yᵢₜ = β₀ + λᵢ + Σ γₜ·Dₜ + Σ βₜ·(Dₜ × Treatmentᵢ) + εᵢₜ</span>
+                    </div>
+                    <p><strong>λᵢ</strong> = unit FE</p>
+                    <p><strong>γₜ</strong> = time FE (coefficient for each time period)</p>
+                    <p><strong>βₜ</strong> = interaction with treatment (period-specific treatment effect)</p>
+                    <p><strong>One period omitted</strong> (e.g., k=-1 or reference period 6) to avoid multicollinearity.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>Interpreting γₜ (Time FE Coefficients, from PS2 Q1)</h3>
+                    <p><strong>γₜ:</strong> Difference between control group's average outcome in period t and control group's average in the omitted (reference) period.</p>
+                    <p>Shows how the control group evolves over time.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>Interpreting βₜ (Treatment × Period Interactions)</h3>
+                    <p><strong>βₜ:</strong> Difference between treated and control groups in period t, relative to the reference period.</p>
+                    <p>This is the period-t DiD effect.</p>
+                    <p><strong>Pre-treatment βₜ should ≈ 0:</strong> If so, supports parallel trends.</p>
+                    <p><strong>Post-treatment βₜ:</strong> The treatment effects in each period.</p>
+                </div>
+
+                <div class="block example">
+                    <h3>From PS2 Q1e Results</h3>
+                    <p>Pre-policy periods: β̂ₜ ≈ 0 (consistent with parallel trends).</p>
+                    <p>Post-policy: β̂ₜ initially negative (policy reduces accidents), then trend toward zero.</p>
+                    <p><strong>Interpretation:</strong> Policy has immediate effect that fades over time (possibly adaptation by drivers).</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>Why Event Study?</h3>
+                    <p>More flexible than assuming one constant effect. Shows dynamic response. Helps test parallel trends assumption (pre-trends should be ≈0).</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3H. Additional DiD Topics</h3>
+
+                <div class="block formula">
+                    <h3>DiD with Repeated Cross-Sections (not panel)</h3>
+                    <p>DiD works even if you don't follow same units over time.</p>
+                    <p>Example: Survey different people each year, but same geographic units.</p>
+                    <div class="formula-box">
+                        <span class="label">Yᵢₜ = β₀ + β₁·Treatmentᵢ + β₂·Postₜ + β₃·(Treatmentᵢ × Postₜ) + εᵢₜ</span>
+                    </div>
+                    <p>Still works because what matters is area-level treatment, not individual tracking.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Clustering Standard Errors (from class)</h3>
+                    <p>Cluster at treatment assignment level (e.g., unit level in panel data).</p>
+                    <p><strong>Why:</strong> Errors are correlated within units over time.</p>
+                    <p><strong>Rule of thumb:</strong> Need ≥30 clusters for clustering to work reliably.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Continuous Treatment Intensity</h3>
+                    <p>Treatment doesn't have to be binary. Can be dose/intensity.</p>
+                    <div class="formula-box">
+                        <span class="label">Yᵢₜ = β₀ + β₁·(Doseᵢ × Postₜ) + ... + εᵢₜ</span>
+                    </div>
+                    <p>β₁ interprets as effect per unit increase in dose.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>Robustness Checks (from PS2)</h3>
+                    <p><strong>Falsification tests:</strong> Show no effect on subgroups that shouldn't be affected by treatment.</p>
+                    <p><strong>Placebo tests:</strong> Show null effect on outcomes unrelated to treatment (e.g., bednet → broken bones).</p>
+                    <p>These strengthen credibility of causal interpretation.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3I. Staggered Rollout / Adoption (Advanced)</h3>
+
+                <div class="block intuition">
+                    <h3>The Complication</h3>
+                    <p>What if treatment rolls out at different times to different groups? Event study is still OK, but some additional caveats apply.</p>
+                </div>
+
+                <div class="block formula">
+                    <h3>When Is Staggered Rollout OK?</h3>
+                    <p>Event study is valid if:</p>
+                    <ol>
+                        <li>Parallel trends hold</li>
+                        <li>No anticipation (people don't change behavior before treatment)</li>
+                        <li>Homogeneous treatment effects (effect same regardless of when you're treated)</li>
+                    </ol>
+                </div>
+
+                <div class="block intuition">
+                    <h3>The Risk: With Heterogeneous TEs</h3>
+                    <p>TWFE with staggered rollout can be biased if treatment effects vary over time or across units.</p>
+                    <p>Some comparisons use already-treated units as controls (bad!).</p>
+                    <p><strong>Advanced topic:</strong> May or may not appear on quiz.</p>
+                </div>
+
+                <div class="block tip">
+                    <h3>For Exam</h3>
+                    <p>If you see staggered rollout: Check assumptions. If effects might be heterogeneous, TWFE might be biased. Alternative: Use only early vs late or use recent methods (Callaway-Sant'Anna).</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 style="margin-top: 1.5rem; color: #ff1493; font-size: 1.2rem;">3J. Seasonality and Other Threats</h3>
+
+                <div class="block intuition">
+                    <h3>Is Seasonality a Problem?</h3>
+                    <p><strong>Answer:</strong> Not if it affects treated and control symmetrically.</p>
+                    <p>Time fixed effects absorb common seasonal patterns.</p>
+                </div>
+
+                <div class="block trap">
+                    <h3>When Seasonality IS a Problem</h3>
+                    <p>If treated and control have <strong>systematically different seasonal patterns</strong> (e.g., treated region is agricultural, control is urban), then parallel trends might be violated.</p>
+                    <p>Solution: Include time trends or control for seasonal patterns separately.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 4: READING REGRESSION TABLES -->
+        <section id="part4">
+            <div class="section-header part4">
+                <h2>PART 4: Interpreting Regression Output</h2>
+                <span class="section-tag">Applied Skills</span>
+            </div>
+
+            <div class="block intuition">
+                <h3>What You'll See on the Exam</h3>
+                <p>A regression table with coefficients, standard errors, and significance stars. You need to:</p>
+                <ul>
+                    <li>Identify the causal coefficient</li>
+                    <li>Interpret in substantive terms</li>
+                    <li>Assess significance</li>
+                    <li>Spot issues (bad controls, wrong specification, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="block formula">
+                <h3>Understanding the Standard Regression Output</h3>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>What It Means</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Coefficient (β̂)</strong></td>
+                        <td>The estimated effect. With controls, it's "holding other variables constant."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Standard Error (SE)</strong></td>
+                        <td>Uncertainty in the estimate. Roughly ±2×SE covers 95% confidence interval.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>t-stat</strong></td>
+                        <td>β̂ / SE. If |t| > 1.96, significant at p&lt;0.05.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>p-value</strong></td>
+                        <td>Probability of observing this β̂ if true effect is 0. p&lt;0.05 = "significant"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>* ** ***</strong></td>
+                        <td>Significance stars: * p&lt;0.10, ** p&lt;0.05, *** p&lt;0.01</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="block example">
+                <h3>Example: Log-Level Interpretation (from PS2 Q3)</h3>
+                <p><strong>Model:</strong> ln(Priceₘₜ) = β₀ + β₁·PC_Connectₘₜ + β₂·PC_Connect·Electₜ + ...</p>
+                <p><strong>Results:</strong> β̂₁ = 0.05, β̂₂ = -0.03</p>
+                <p><strong>Interpretation:</strong></p>
+                <ul>
+                    <li>Politically connected mills have 5% higher prices in non-election years (e^0.05 - 1 ≈ 5%)</li>
+                    <li>During elections, the effect decreases by 3 percentage points (β₁ + β₂ = 2% total)</li>
+                </ul>
+                <p><strong>Formula:</strong> e^β - 1 ≈ % change (exact for small β, approximation for large)</p>
+            </div>
+
+            <div class="block example">
+                <h3>Multi-Level Specification (from PS2 Q3)</h3>
+                <p><strong>Setup:</strong> Data at mill-month level, with mill FE and year FE.</p>
+                <p><strong>Question:</strong> What does β₁ on PC_Connectₘ mean?</p>
+                <p><strong>Answer:</strong> Difference between politically connected and non-connected mills, in non-election years, controlling for mill and year FE. This is a within-mill, within-year comparison.</p>
+            </div>
+
+            <div class="block tip">
+                <h3>Exam Technique: Reading Complex Tables</h3>
+                <ol>
+                    <li>Identify the dependent variable</li>
+                    <li>Spot the key coefficient(s) of interest</li>
+                    <li>Check what controls/FE are included</li>
+                    <li>Interpret the coefficient in context (level vs log, with vs without FE)</li>
+                    <li>Comment on significance</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- PART 5: PRACTICE QUIZ -->
+        <section id="practice">
+            <div class="section-header part5">
+                <h2>PART 5: Practice Quiz (30 Questions)</h2>
+                <span class="section-tag">Exam-Style Problems</span>
+            </div>
+
+            <div class="block tip">
+                <h3>How to Use This Section</h3>
+                <p>These 30 questions follow the exam's format: calculations, conceptual, interpretation, and defense questions. Click each question to see the answer. Try solving before looking!</p>
+            </div>
+
+            <!-- CALCULATION QUESTIONS -->
+            <h3 style="margin-top: 2rem; margin-bottom: 1.5rem; color: #00d084; font-size: 1.2rem;">Section A: Calculation Questions (8 questions)</h3>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q1</span>
+                    <span class="question-text">SDO Decomposition. You observe: E[Y|D=1] = 15, E[Y|D=0] = 10, E[Y(0)|D=1] = 9, E[Y(0)|D=0] = 10. Calculate SDO, ATT, and Selection Bias.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>SDO = 15 - 10 = <strong>5</strong></li>
+                            <li>ATT = E[Y(1)|D=1] - E[Y(0)|D=1] = E[Y(1)|D=1] - 9. But E[Y(1)|D=1] = E[Y|D=1] = 15, so ATT = 15 - 9 = <strong>6</strong></li>
+                            <li>SB = E[Y(0)|D=1] - E[Y(0)|D=0] = 9 - 10 = <strong>-1</strong></li>
+                            <li><strong>Check:</strong> SDO = ATT + SB → 5 = 6 + (-1) = 5 ✓</li>
+                        </ul>
+                        <p><strong>Interpretation:</strong> The treated group had lower Y(0) than control (SB = -1), but benefited more from treatment (ATT = 6). The observed difference (SDO = 5) reflects both.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q2</span>
+                    <span class="question-text">Compliance Types. 80% assigned to treatment (Z=1), 20% to control. Of those assigned treatment, 90% participated. Of those assigned control, 10% participated. Calculate always-takers, never-takers, and compliers.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>P(D=1|Z=1) = 0.90</li>
+                            <li>P(D=1|Z=0) = 0.10</li>
+                            <li><strong>Always-Takers:</strong> P(D=1|Z=0) = 0.10 = <strong>10%</strong></li>
+                            <li><strong>Never-Takers:</strong> 1 - P(D=1|Z=1) = 1 - 0.90 = 0.10 = <strong>10%</strong></li>
+                            <li><strong>Compliers:</strong> P(D=1|Z=1) - P(D=1|Z=0) = 0.90 - 0.10 = 0.80 = <strong>80%</strong></li>
+                            <li><strong>Check:</strong> 10% + 10% + 80% = 100% ✓ (assuming no defiers)</li>
+                        </ul>
+                        <p><strong>Interpretation:</strong> 80% of population are compliers (affected by assignment), 10% always take treatment, 10% never do.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q3</span>
+                    <span class="question-text">ITT and LATE. ITT = 3.2, First Stage = 0.80. What is LATE?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <div class="formula-box">
+                            <span class="label">LATE = ITT / First Stage = 3.2 / 0.80 = 4.0</span>
+                        </div>
+                        <p><strong>Interpretation:</strong> Being assigned to treatment reduces the treated outcome by 3.2 units on average (ITT). For the 80% who comply, the actual effect is 4.0 units. (Note: If ITT is negative, LATE is more negative.)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q4</span>
+                    <span class="question-text">DiD Calculation. Control group: 20 pre-policy, 22 post-policy. Treated group: 25 pre-policy, 30 post-policy. Calculate the DiD effect.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li>Control change: 22 - 20 = 2</li>
+                            <li>Treated change: 30 - 25 = 5</li>
+                            <li><strong>DiD = 5 - 2 = 3</strong></li>
+                        </ul>
+                        <p><strong>Alternative formula:</strong> DiD = (30 - 25) - (22 - 20) = 5 - 2 = 3 ✓</p>
+                        <p><strong>Interpretation:</strong> Treatment caused a 3-unit increase in the outcome. Control group's 2-unit increase (common trend) is subtracted out.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q5</span>
+                    <span class="question-text">ATE from RCT. Regression: Y = 50 + 3*Treat. What is the ATE? What's the control group mean?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <ul>
+                            <li><strong>ATE = 3</strong> (coefficient on Treat, unbiased under randomization)</li>
+                            <li><strong>Control mean = 50</strong> (intercept β₀, since β₀ = E[Y|D=0])</li>
+                            <li>Treated mean = 50 + 3 = 53</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q6</span>
+                    <span class="question-text">Log-Level Elasticity. Ln(Wage) = 2 + 0.08*Education. Interpret the coefficient.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <p>Each additional year of education increases wage by approximately <strong>8%</strong>.</p>
+                        <p><strong>Formula:</strong> e^0.08 - 1 ≈ 0.0833 ≈ 8.33% (more precise)</p>
+                        <p><strong>Approximation:</strong> 0.08 ≈ 8% (used for small coefficients)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q7</span>
+                    <span class="question-text">Regression with controls. Y = 10 + 2*Treat - 0.5*Age + e. If Treat = 1, Age = 30, what's the predicted Y?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <p>Ŷ = 10 + 2(1) - 0.5(30) = 10 + 2 - 15 = <strong>-3</strong></p>
+                        <p><strong>Interpretation:</strong> For a 30-year-old person assigned treatment, predicted outcome is -3. (In practice, you'd need to interpret this in context—could be negative if outcome is, e.g., unemployment duration.)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q8</span>
+                    <span class="question-text">ATT vs ATE. You run a non-randomized study. ATT = 10, p=0.6. What can you say about ATE?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Solution:</strong></p>
+                        <p>ATE = p*ATT + (1-p)*ATU = 0.6*10 + 0.4*ATU = 6 + 0.4*ATU</p>
+                        <p>Without knowing ATU, you cannot determine ATE.</p>
+                        <p><strong>Special case:</strong> If ATU = ATT (homogeneous effects), then ATE = 0.6*10 + 0.4*10 = 10 = ATT.</p>
+                        <p><strong>General point:</strong> ATT alone doesn't determine ATE; need to know ATU or assume homogeneity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCEPTUAL QUESTIONS -->
+            <h3 style="margin-top: 2rem; margin-bottom: 1.5rem; color: #00d084; font-size: 1.2rem;">Section B: Conceptual Questions (8 questions)</h3>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q9</span>
+                    <span class="question-text">What does the Independence assumption (Y(1),Y(0) ⊥⊥ D) imply for the relationship between SDO and ATE?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Answer:</strong> Under independence, E[Y(0)|D=1] = E[Y(0)|D=0], which means Selection Bias = 0. Therefore, SDO = ATE (unbiased).</p>
+                        <p><strong>Intuition:</strong> If treatment is independent of potential outcomes, the treated and control groups have the same expected Y(0), so any observed difference is due to the treatment, not selection.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q10</span>
+                    <span class="question-text">Explain the difference between ITT and LATE. When would you report each?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>ITT:</strong> Effect of being assigned treatment (uses Z). Includes everyone assigned, whether they complied or not.</p>
+                        <p><strong>LATE:</strong> Effect of actually receiving treatment, for compliers only (uses D adjusted for Z). LATE = ITT / First Stage.</p>
+                        <p><strong>When to use:</strong></p>
+                        <ul>
+                            <li><strong>ITT:</strong> If you want the policy-relevant effect (offering the program, people choose whether to participate)</li>
+                            <li><strong>LATE:</strong> If you want the treatment effect for those who actually take it</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q11</span>
+                    <span class="question-text">What is SUTVA and why does it matter? Give an example of a violation.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>SUTVA:</strong> Stable Unit Treatment Value Assumption. Has two parts:</p>
+                        <ol>
+                            <li><strong>No interference:</strong> One person's treatment doesn't affect another's outcome</li>
+                            <li><strong>Single version of treatment:</strong> Treatment means the same thing for everyone</li>
+                        </ol>
+                        <p><strong>Why it matters:</strong> If SUTVA is violated, causal effects are biased/misspecified.</p>
+                        <p><strong>Example violation:</strong> Vaccine study where vaccinated people create herd immunity for unvaccinated neighbors. One person's treatment (vaccination) affects neighbors' outcomes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q12</span>
+                    <span class="question-text">What is the Parallel Trends assumption in DiD? Why can you not test it post-treatment?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Parallel Trends:</strong> The treated and control groups would have followed the same trend absent treatment.</p>
+                        <p><strong>Why can't test post-treatment:</strong> After treatment, the treated group's outcome is affected by treatment. You can't observe what would have happened without treatment, so you can't directly check if trends match.</p>
+                        <p><strong>What you CAN do:</strong> Test pre-treatment trends. If they're similar before treatment, it's suggestive evidence (though not definitive) that trends would remain parallel post-treatment.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q13</span>
+                    <span class="question-text">What is an "Event Study" and what does it show that a simple DiD doesn't?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Event Study:</strong> Estimates separate treatment effects for each time period relative to a reference period.</p>
+                        <p><strong>What it shows that DiD doesn't:</strong></p>
+                        <ul>
+                            <li>Dynamic effects (does effect grow, fade, stay constant over time?)</li>
+                            <li>Pre-treatment trends (can check if parallel trends assumption reasonable)</li>
+                            <li>When effect kicks in (immediate vs delayed)</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Requires more periods of data, but more informative.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q14</span>
+                    <span class="question-text">Explain why adding pre-treatment control variables reduces standard errors but randomization alone doesn't guarantee this.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Why controls reduce SE:</strong> Controls explain variation in the outcome not caused by treatment. This reduces Var(ε) → smaller SE → more precision.</p>
+                        <p><strong>Why randomization alone doesn't guarantee smaller SE:</strong> Randomization makes the estimate unbiased (SDO = ATE), but doesn't reduce variance of the error term. Controls do that.</p>
+                        <p><strong>Summary:</strong> Randomization = unbiased. Controls = more precise. Both are good.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q15</span>
+                    <span class="question-text">What is a "bad control" and why should you avoid it in RCTs?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Bad control:</strong> A variable measured AFTER treatment that might be affected by treatment.</p>
+                        <p><strong>Why avoid:</strong> If you control for a post-treatment variable that's affected by treatment, you're controlling away part of the treatment effect. This makes the treatment coefficient smaller and biases it downward.</p>
+                        <p><strong>Example:</strong> Treatment = tutoring. Bad control = hours studied (tutoring likely increases study hours). With this control, you'd underestimate tutoring's benefit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q16</span>
+                    <span class="question-text">The four LATE assumptions—which one would be violated if the instrument (assignment Z) is correlated with an unobserved confounder of D and Y?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Answer:</strong> This would violate the <strong>Exclusion Restriction</strong> (Assumption 2).</p>
+                        <p>If Z is correlated with an unobserved confounder U that affects both D and Y, then Z affects Y through U independently of D, violating the requirement that Z → Y only through D.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERPRETATION QUESTIONS -->
+            <h3 style="margin-top: 2rem; margin-bottom: 1.5rem; color: #00d084; font-size: 1.2rem;">Section C: Interpretation Questions (8 questions)</h3>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q17</span>
+                    <span class="question-text">Regression output: Y = 100 + 5*Treat*** + 2*Control_Var (SE=1.5). Interpret all three numbers.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Interpretation:</strong></p>
+                        <ul>
+                            <li><strong>100:</strong> Baseline/control group mean (E[Y|Treat=0, Control_Var=0])</li>
+                            <li><strong>5 with ***:</strong> Treatment increases Y by 5 units, statistically significant at p&lt;0.01</li>
+                            <li><strong>2 (SE=1.5):</strong> Each unit of Control_Var increases Y by 2 units. SE is large relative to coefficient (t≈1.3), likely not significant.</li>
+                        </ul>
+                        <p><strong>The control variable:** Doesn't reduce the treatment coefficient (still 5), just adjusts for baseline differences to gain precision.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q18</span>
+                    <span class="question-text">Regression: ln(Earnings) = 0.50 + 0.12*College**. Interpret the college coefficient and test result.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Interpretation:</strong></p>
+                        <ul>
+                            <li><strong>0.12:</strong> College graduates earn approximately 12% more than non-graduates</li>
+                            <li><strong>e^0.12 - 1 ≈ 0.127 ≈ 12.7%</strong> (more precise)</li>
+                            <li><strong>**:</strong> Statistically significant at p&lt;0.05</li>
+                        </ul>
+                        <p><strong>Important caveat:</strong> This is observational, so likely includes selection bias (smarter/more motivated people attend college AND earn more for reasons unrelated to college).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q19</span>
+                    <span class="question-text">DiD regression output: β₁ = 4.2** (Treat × Post), with province FE and year FE included. What is this estimate and what does it mean?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>What it is:</strong> ATT (Average Treatment effect on Treated) for the post-policy period.</p>
+                        <p><strong>What it means:</strong> Provinces that implemented the policy had outcomes 4.2 units higher post-policy compared to what they would have experienced following the control group's trend, controlling for province and year fixed effects.</p>
+                        <p><strong>Significance:</strong> Significant at p&lt;0.05, so the effect is unlikely due to chance alone.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q20</span>
+                    <span class="question-text">Event study output shows: β_{t=-2} = -0.5, β_{t=-1} = 0 (omitted), β_{t=0} = 2.1*, β_{t=1} = 3.0**, β_{t=2} = 3.2**. Interpret the pattern.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Interpretation:</strong></p>
+                        <ul>
+                            <li><strong>t=-2:</strong> -0.5, not significant. Slight pre-treatment difference (concerning for parallel trends, but small)</li>
+                            <li><strong>t=-1:</strong> Omitted reference period (normalized to 0)</li>
+                            <li><strong>t=0, 1, 2:</strong> Post-treatment effects increasing: 2.1 → 3.0 → 3.2, all significant</li>
+                        </ul>
+                        <p><strong>Conclusion:</strong> Treatment effect emerges gradually and grows over time. Pre-treatment coefficient is close to zero, supporting parallel trends.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q21</span>
+                    <span class="question-text">You see: "Regression includes unit and time FE. Treatment coefficient β̂ = 1.5." Why don't the treatment indicator or time indicator appear separately in the regression?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Answer:</strong> They're absorbed by the fixed effects.</p>
+                        <p><strong>Why:</strong> Treatment indicator only varies by unit (same within unit over time), so unit FE absorbs it. Time indicator only varies by time (same across units), so time FE absorbs it.</p>
+                        <p><strong>The interaction (Treatment × Time) is not absorbed,</strong> so it's estimated as β̂ = 1.5.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q22</span>
+                    <span class="question-text">Balance table shows: Mean Age (Control) = 42, Mean Age (Treatment) = 45, t-stat = 1.8, p-value = 0.12. What does this tell you about the randomization?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Interpretation:</strong></p>
+                        <p>Treatment and control groups differ in age by 3 years on average (45 vs 42). But this difference is NOT statistically significant (p=0.12 > 0.05).</p>
+                        <p><strong>Conclusion:</strong> This could be due to chance (randomization can create small imbalances). Randomization appears to have worked for age.</p>
+                        <p><strong>General note:</strong> Expect ~5% of characteristics to be significantly different by chance. If many characteristics have p&lt;0.05, something may have gone wrong with randomization.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q23</span>
+                    <span class="question-text">2SLS regression. First stage: D = 0.5 + 0.8*Z** (SE=0.3). What does the first stage tell you?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>What it tells you:</strong> Assignment (Z) strongly predicts actual treatment (D).</p>
+                        <p><strong>Magnitude:</strong> Being assigned to treatment (Z=1 vs Z=0) increases the probability of treatment by 0.8 (or likelihood on margin).</p>
+                        <p><strong>Strength:</strong> t-stat = 0.8 / 0.3 = 2.67, significant at p&lt;0.05. Strong instrument.</p>
+                        <p><strong>Check:</strong> Coefficient is large relative to SE (F-stat ≈ 7, which is &gt; 10 rule of thumb just barely fails but is decent)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q24</span>
+                    <span class="question-text">ITT regression: Y = 10 - 2*Assigned** (SE=0.8), with 1000 observations. Calculate t-stat, p-value (approx), and 95% CI.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Calculations:</strong></p>
+                        <ul>
+                            <li><strong>t-stat:</strong> -2 / 0.8 = -2.5</li>
+                            <li><strong>p-value:</strong> |t| = 2.5 corresponds to p ≈ 0.012 (close to p&lt;0.05)</li>
+                            <li><strong>95% CI:</strong> -2 ± 1.96 × 0.8 = [-3.57, -0.43]</li>
+                        </ul>
+                        <p><strong>Interpretation:</strong> Assigning to treatment reduces the outcome by 2 units on average. This effect is statistically significant at p&lt;0.05. We're 95% confident the true effect is between -3.57 and -0.43.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEFENSE/CRITIQUE QUESTIONS -->
+            <h3 style="margin-top: 2rem; margin-bottom: 1.5rem; color: #00d084; font-size: 1.2rem;">Section D: Defend/Critique Questions (6 questions)</h3>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q25</span>
+                    <span class="question-text">A researcher reports: "We compared healthcare outcomes for people who got treatment vs those who didn't. Treated group had worse health. We conclude treatment is ineffective." Is this causal? Why or why not?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>No, this is not causal. Selection bias!</strong></p>
+                        <p><strong>Why:</strong> People in worse health are more likely to seek treatment. The observed worse outcomes in treated group could be because:</p>
+                        <ul>
+                            <li>They were already sicker (Y(0) lower)</li>
+                            <li>NOT because treatment caused them to be sicker</li>
+                        </ul>
+                        <p><strong>SDO overestimates (or is negative while true effect might be positive).</strong></p>
+                        <p><strong>To fix:</strong> Use RCT, IV, DiD, or other causal method. Or at minimum, control for severity of illness at baseline.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q26</span>
+                    <span class="question-text">A paper uses DiD with treated = early-adopting states, control = late-adopting states. They find a large effect of the policy. Critique this design.</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Main critique: Parallel trends assumption is likely violated.</strong></p>
+                        <p><strong>Why:</strong> States that adopt early might be systematically different from late-adopters (e.g., more progressive, faster-growing, healthier population). These differences could cause outcomes to trend differently anyway.</p>
+                        <p><strong>Example:</strong> Progressive states adopt policy early AND have other policies that improve outcomes. Outcomes rise in early-adopter states for reasons unrelated to the policy.</p>
+                        <p><strong>To strengthen:</strong></p>
+                        <ul>
+                            <li>Test pre-trends formally (F-test)</li>
+                            <li>Add robustness checks (falsification tests, alternate control groups)</li>
+                            <li>Control for state characteristics that might drive differential trends</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q27</span>
+                    <span class="question-text">An RCT finds ATE = 8 for a job training program. The researcher says "This effect applies equally to all subgroups." How would you challenge this?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Challenge:</strong> RCTs estimate ATE, but don't require homogeneity. Treatment effects can be heterogeneous.</p>
+                        <p><strong>How to check:</strong></p>
+                        <ul>
+                            <li>Estimate effects separately by subgroup (gender, age, education)</li>
+                            <li>Interact treatment with subgroup indicators: Y = β₀ + β₁*Treat + β₂*Male + β₃*Treat*Male + ...</li>
+                            <li>Test if effects differ: H₀: β₁ = β₁ + β₃ (effect for male = effect for female)</li>
+                        </ul>
+                        <p><strong>Likely finding:</strong> Effects probably do differ. Job training may benefit some groups more than others (e.g., younger people who have more working years left).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q28</span>
+                    <span class="question-text">An IV study estimates LATE = 10. The researcher claims "This is the average effect of treatment for the entire population." Do you agree?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>No, strongly disagree!</strong></p>
+                        <p><strong>What LATE is:</strong> Effect of treatment for COMPLIERS only (those affected by the instrument).</p>
+                        <p><strong>Who are compliers:</strong> People who take treatment when assigned but don't when not assigned. This is often a specific subgroup.</p>
+                        <p><strong>Example:</strong> In job training study, compliers might be people who are on the margin (would consider training). Always-takers and never-takers are excluded.</p>
+                        <p><strong>Correct claim:</strong> "This is the effect for compliers, which is [X]% of the population."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q29</span>
+                    <span class="question-text">A researcher includes a post-treatment variable as a control in an RCT regression. They argue "This captures the mechanism by which treatment works." Good idea or bad control?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Bad control! This is post-treatment conditioning.</strong></p>
+                        <p><strong>The problem:</strong> If the post-treatment variable is affected by treatment, controlling for it removes part of the treatment effect.</p>
+                        <p><strong>Example:</strong> Treatment = tutoring, post-treatment variable = confidence. Tutoring increases confidence, which increases test scores. Controlling for confidence makes the tutoring coefficient smaller (biased down).</p>
+                        <p><strong>Better approach:</strong> If interested in mechanism, use mediation analysis (decompose total effect into direct + indirect paths). But don't just control for the mediator in a standard regression.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <span class="question-number">Q30</span>
+                    <span class="question-text">A DiD study examines the effect of a minimum wage policy. Pre-trends are flat (no significant pre-policy differences between treated and control counties). The researcher concludes "Parallel trends assumption definitely holds." Do you agree?</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="question-answer">
+                    <div class="answer-content">
+                        <p><strong>Partial agreement with caveat:</strong></p>
+                        <p><strong>What we know:</strong> Flat pre-trends is good evidence for parallel trends, but not definitive proof.</p>
+                        <p><strong>Why not definitive:</strong> Even with flat pre-trends, trends could diverge post-treatment for reasons unrelated to policy. Example: Economic recession hits treated counties harder (independent of policy effect).</p>
+                        <p><strong>What I'd recommend:</strong></p>
+                        <ul>
+                            <li>Flat pre-trends is good sign. Report it.</li>
+                            <li>But also do robustness checks (falsification tests, event study)</li>
+                            <li>State assumption cautiously: "Pre-trends are parallel. While post-trends cannot be directly tested, we have no evidence against parallel trends assumption."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 6: CHEAT SHEET -->
+        <section id="cheatsheet">
+            <div class="section-header part6">
+                <h2>PART 6: Formula Cheat Sheet</h2>
+                <span class="section-tag">Quick Reference</span>
+            </div>
+
+            <div class="quick-ref">
+                <h4>PART 1: RUBIN CAUSAL MODEL</h4>
+                <table>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Formula</th>
+                        <th>Interpretation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>ATE</strong></td>
+                        <td>E[Y(1) - Y(0)]</td>
+                        <td>Average effect for everyone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ATT</strong></td>
+                        <td>E[Y(1) - Y(0) | D=1]</td>
+                        <td>Effect for treated group</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ATU</strong></td>
+                        <td>E[Y(1) - Y(0) | D=0]</td>
+                        <td>Effect for control group</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SDO</strong></td>
+                        <td>E[Y | D=1] - E[Y | D=0]</td>
+                        <td>Observed difference (biased)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Selection Bias</strong></td>
+                        <td>E[Y(0) | D=1] - E[Y(0) | D=0]</td>
+                        <td>Baseline difference bias</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decomposition</strong></td>
+                        <td>SDO = ATT + SB</td>
+                        <td>Effect + bias</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Independence</strong></td>
+                        <td>(Y(1),Y(0)) ⊥⊥ D ⇒ SB=0, SDO=ATE</td>
+                        <td>Random assignment removes bias</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="quick-ref">
+                <h4>PART 2: RCTs</h4>
+                <table>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Formula</th>
+                        <th>Interpretation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Basic Regression</strong></td>
+                        <td>Y = β₀ + β₁·Treat + ε</td>
+                        <td>β̂₁ = ATE under randomization</td>
+                    </tr>
+                    <tr>
+                        <td><strong>With Controls</strong></td>
+                        <td>Y = β₀ + β₁·Treat + X'γ + ε</td>
+                        <td>β̂₁ still unbiased, smaller SE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance</strong></td>
+                        <td>Compliers = P(D=1|Z=1) - P(D=1|Z=0)</td>
+                        <td>Share of people affected by Z</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ITT</strong></td>
+                        <td>ITT = E[Y | Z=1] - E[Y | Z=0]</td>
+                        <td>Effect of assignment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>First Stage</strong></td>
+                        <td>FS = P(D=1|Z=1) - P(D=1|Z=0)</td>
+                        <td>Share complying</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LATE</strong></td>
+                        <td>LATE = ITT / FS</td>
+                        <td>Effect for compliers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2SLS</strong></td>
+                        <td>β₁^IV = β̂_ITT / β̂_FS</td>
+                        <td>LATE via 2SLS</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="quick-ref">
+                <h4>PART 3: DiD</h4>
+                <table>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Formula</th>
+                        <th>Interpretation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>2×2 DiD</strong></td>
+                        <td>DiD = (B-A) - (D-C)</td>
+                        <td>(Treat,Post) - (Treat,Pre) - (Control,Post-Pre)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Regression DiD</strong></td>
+                        <td>Y = β₀ + β₁·D + β₂·Post + β₃·(D×Post) + ε</td>
+                        <td>β̂₃ = DiD = ATT</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TWFE</strong></td>
+                        <td>Y = β₁·(D×Post) + λᵢ + αₜ + ε</td>
+                        <td>β̂₁ = DiD with FE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event Study</strong></td>
+                        <td>Y = Σ βₜ·(D×Tᵢₘₑₜ) + λᵢ + αₜ + ε</td>
+                        <td>Period-specific DiD effects</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parallel Trends</strong></td>
+                        <td>E[ΔY(0) | D=1] = E[ΔY(0) | D=0]</td>
+                        <td>Trends same absent treatment</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="quick-ref">
+                <h4>PART 4: LOG-LEVEL REGRESSION</h4>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>Coefficient Interpretation</th>
+                    </tr>
+                    <tr>
+                        <td>Y = β + β_X (level-level)</td>
+                        <td>β is unit change in Y</td>
+                    </tr>
+                    <tr>
+                        <td>ln(Y) = β + β_X (log-level)</td>
+                        <td>e^β - 1 ≈ % change in Y per unit X (or just β for small β)</td>
+                    </tr>
+                    <tr>
+                        <td>Y = β + β_ln(X) (level-log)</td>
+                        <td>β / 100 = change in Y per 1% increase in X</td>
+                    </tr>
+                    <tr>
+                        <td>ln(Y) = β + β_ln(X) (log-log)</td>
+                        <td>β = elasticity (% change in Y per % change in X)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="quick-ref">
+                <h4>HOW TO ANSWER EXAM QUESTIONS</h4>
+                <table>
+                    <tr>
+                        <th>Question Type</th>
+                        <th>Strategy</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Calculate an effect</strong></td>
+                        <td>Identify what's being asked (ATE, ATT, DiD?), plug numbers in, show work</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interpret regression</strong></td>
+                        <td>Identify coefficient of interest, explain in context, note significance, mention assumptions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Explain concept</strong></td>
+                        <td>Define clearly, give intuition, use an example, state why it matters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Defend/critique</strong></td>
+                        <td>Identify assumption being challenged, explain why it's violated, suggest fix</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parallel trends</strong></td>
+                        <td>Cannot test post-treatment. Check pre-trends. If similar, say "suggestive evidence" for PT assumption</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="highlight">
+                <strong>EXAM DAY REMINDER:</strong> The quiz covers Topics I-III. Focus on:
+                <ul>
+                    <li>Rubin Causal Model and SDO decomposition (be able to calculate and interpret)</li>
+                    <li>RCTs: ITT, LATE, compliance types, four LATE assumptions</li>
+                    <li>DiD: 2×2 table, parallel trends, event study, interpretation</li>
+                    <li>Reading tables: identify causal coefficient, interpret in context, spot issues</li>
+                </ul>
+            </div>
+        </section>
     </div>
-  </div></details>
-</div>
 
-<div class="quiz-block">
-  <span class="qnum">Q5</span>
-  <p class="question">¿Qué identifica el LATE? ¿Para quién?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p>Efecto causal del tratamiento <b>solo para compliers</b> (los que cambian su comportamiento según la asignación). No es para todos.</p>
-  </div></details>
-</div>
+    <footer>
+        <p>AEM 6121 - Applied Econometrics II | Prof. Brian Dillon, Cornell</p>
+        <p>Last updated: February 27, 2026 | Quiz: Tomorrow</p>
+    </footer>
 
-<div class="quiz-block">
-  <span class="qnum">Q6</span>
-  <p class="question">RCT: Ȳ(Z=1)=75, Ȳ(Z=0)=70, P(D=1|Z=1)=0.80, P(D=1|Z=0)=0.20. Calcula todo.</p>
-  <details><summary>Ver respuesta</summary><div>
-    <div class="math">
-      ITT = 75 − 70 = <b>5</b><br>
-      FS = 0.80 − 0.20 = <b>0.60</b><br>
-      LATE = 5 / 0.60 = <b>8.33</b><br>
-      Compliers = <b>60%</b><br>
-      Always-takers = 0.20 = <b>20%</b><br>
-      Never-takers = 1−0.80 = <b>20%</b><br>
-      Sum = 60+20+20 = 100% ✓ &nbsp; |8.33| ≥ |5| ✓
-    </div>
-  </div></details>
-</div>
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollTotal) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
 
-<div class="quiz-block">
-  <span class="qnum">Q7</span>
-  <p class="question">¿Cuáles son los 4 supuestos del LATE?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p>1) Independence (Z aleatorio). 2) Exclusion (Z→Y solo vía D). 3) First stage (Z cambia D). 4) Monotonicity (no defiers).</p>
-  </div></details>
-</div>
+        // Navigation highlighting
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
 
-<div class="quiz-block">
-  <span class="qnum">Q8</span>
-  <p class="question">DiD: Tratados pre=50, post=65. Control pre=45, post=52. ¿DiD?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <div class="math">DiD = (65−50) − (52−45) = 15 − 7 = <b>8</b></div>
-  </div></details>
-</div>
+        // Collapsible questions
+        document.querySelectorAll('.question-header').forEach(header => {
+            header.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
 
-<div class="quiz-block">
-  <span class="qnum">Q9</span>
-  <p class="question">β₀=200, β₁=30, β₂=15, β₃=−10. Reconstruye la tabla y di el efecto causal.</p>
-  <details><summary>Ver respuesta</summary><div>
-    <div class="math">
-      C = 200, A = 230, D = 215, B = 235<br>
-      Efecto causal = β₃ = <b>−10</b><br>
-      Check: (235−230)−(215−200) = 5−15 = −10 ✓
-    </div>
-  </div></details>
-</div>
+        // Auto-highlight nav based on scroll position
+        window.addEventListener('scroll', function() {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-<div class="quiz-block">
-  <span class="qnum">Q10</span>
-  <p class="question">¿Parallel trends significa que los grupos tienen el mismo nivel?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p><b>NO.</b> Pueden tener niveles diferentes (β₁ ≠ 0). Lo que importa es que <b>cambien al mismo ritmo</b>. Misma tendencia ≠ mismo nivel.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q11</span>
-  <p class="question">Si pre-trends son ≈ 0, ¿eso prueba parallel trends?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p><b>NO.</b> Es solo evidencia sugestiva. Las tendencias podrían divergir justo al momento del tratamiento. No es prueba.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q12</span>
-  <p class="question">¿Qué es un bad control? Ejemplo.</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p>Variable medida POST-tratamiento que puede ser afectada por él. Ejemplo: controlar por "ingreso actual" en estudio de programa de empleo — el programa puede haber cambiado el ingreso.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q13</span>
-  <p class="question">¿Cuándo LATE = ATE?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p>Cuando todos son compliers (compliance perfecta, FS=1) o cuando el efecto es homogéneo (el tratamiento afecta igual a todos).</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q14</span>
-  <p class="question">RCT con compliance perfecta. ¿Qué identificas?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p><b>ATE.</b> Con compliance perfecta: Z=D, ITT=LATE=ATE. El SDO es insesgado y estima el ATE.</p>
-  </div></details>
-</div>
-
-<div class="quiz-block">
-  <span class="qnum">Q15</span>
-  <p class="question">¿Se viola SUTVA si un programa de vacunación vacuna a parte de la población?</p>
-  <details><summary>Ver respuesta</summary><div>
-    <p><b>Sí.</b> Se viola la no-interferencia: si yo me vacuno, tú estás más protegido por la inmunidad de grupo, aunque no estés vacunado. El tratamiento de i afecta el resultado de j.</p>
-  </div></details>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="level level-purple" id="cheat">
-  <div class="tag">REFERENCIA RÁPIDA</div>
-  <h2>CHEAT SHEET: Cómo Responder Cada Pregunta</h2>
-</div>
-
-<div class="card">
-  <table>
-    <tr><th>Pregunta</th><th>Respuesta rápida</th></tr>
-    <tr><td><b>"Calcula SDO"</b></td><td>Ē(tratados) − Ē(controles)</td></tr>
-    <tr><td><b>"Descompón SDO"</b></td><td>SDO = ATT + SB. Calcula cada uno. Verifica suma.</td></tr>
-    <tr><td><b>"¿SDO sesgado?"</b></td><td>Sí, a menos que haya randomización (independence).</td></tr>
-    <tr><td><b>"Calcula ITT"</b></td><td>Ē(Y|<b>Z</b>=1) − Ē(Y|<b>Z</b>=0). Usa Z, NO D.</td></tr>
-    <tr><td><b>"Calcula LATE"</b></td><td>ITT / First Stage. Verifica |LATE| ≥ |ITT|.</td></tr>
-    <tr><td><b>"% compliers"</b></td><td>= First Stage = P(D=1|Z=1) − P(D=1|Z=0)</td></tr>
-    <tr><td><b>"Calcula DiD"</b></td><td>(B−A)−(D−C). Llena tabla primero.</td></tr>
-    <tr><td><b>"¿Qué es β₃?"</b></td><td>= DiD = efecto causal</td></tr>
-    <tr><td><b>"De betas → tabla"</b></td><td>C=β₀, A=β₀+β₁, D=β₀+β₂, B=β₀+β₁+β₂+β₃</td></tr>
-    <tr><td><b>"¿Qué identifica?"</b></td><td>RCT perfecto→ATE. Non-compliance→LATE. DiD→ATT.</td></tr>
-    <tr><td><b>"¿Se viola SUTVA?"</b></td><td>¿Tto. de uno afecta a otro? ¿Versiones distintas?</td></tr>
-    <tr><td><b>"¿Creíble DiD?"</b></td><td>Parallel trends, pre-trends, shocks, Ashenfelter dip</td></tr>
-    <tr><td><b>"¿LATE = ATE?"</b></td><td>Cuando todos son compliers o efecto homogéneo</td></tr>
-  </table>
-</div>
-
-<div class="final">
-  <h3>Ya tienes todo. Ahora repasa las Q1-Q15 sin ver respuestas.</h3>
-  <p>Si puedes responder las 15 sin mirar → estás listo para mañana.</p>
-  <p>Si fallas alguna → relee solo esa sección. No releas todo.</p>
-</div>
-
-</div>
-
-<script>
-// Progress bar
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  document.getElementById('progressBar').style.width = pct + '%';
-});
-</script>
-
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
